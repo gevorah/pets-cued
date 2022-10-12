@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Pet\'s Cued</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in">Iniciar Sesión</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Bienvenido!"</string>
+    <string name="login_failed">"Las credenciales usadas son incorrectas."</string>
+
+
+</resources>

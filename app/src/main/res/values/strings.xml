@@ -9,7 +9,13 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="name_pet">"name"</string>
+    <string name="name_pet">Nombre de la mascota</string>
+    <string name="color_pet">Color de la mascota</string>
+    <string name="breed_pet">Raza de la mascota</string>
+    <string name="age_pet">Edad de la mascota</string>
+    <string name="name_owner">Nombre del dueño</string>
+    <string name="adress_owner">Dirección del dueño</string>
+    <string name="phone_owner">Numero de telefono</string>
 
 
 </resources>

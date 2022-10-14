@@ -16,6 +16,7 @@
     <string name="name_owner">Nombre del dueño</string>
     <string name="adress_owner">Dirección del dueño</string>
     <string name="phone_owner">Numero de telefono</string>
+    <string name="name_fundation">Nombre de la fundación</string>
 
 
 </resources>

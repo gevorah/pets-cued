@@ -17,6 +17,8 @@
     <string name="adress_owner">Dirección del dueño</string>
     <string name="phone_owner">Numero de telefono</string>
     <string name="name_fundation">Nombre de la fundación</string>
+    <string name="ayuda1">¿Cómo publicar mascota perdida?</string>
+    <string name="ayuda1.1">En la pantalla home, oprimir el boton "publicar mascota perdida"?</string>
 
 
 </resources>

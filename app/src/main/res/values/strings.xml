@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Pet\'s Cued</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Iniciar Sesión</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="name_pet">Nombre de la mascota</string>
+    <string name="color_pet">Color de la mascota</string>
+    <string name="breed_pet">Raza de la mascota</string>
+    <string name="age_pet">Edad de la mascota</string>
+    <string name="name_owner">Nombre del dueño</string>
+    <string name="adress_owner">Dirección del dueño</string>
+    <string name="phone_owner">Numero de telefono</string>
+    <string name="name_fundation">Nombre de la fundación</string>
+    <string name="adopcion">Adopción</string>
+    <string name="perdido">Perdido</string>
+    <string name="mis_publicaciones">Mis Publicaciones</string>
+    <string name="add_publication">Añadir publicación</string>
+    <string name="addpublication">addPublication</string>
+    <string name="action_edit_publication">Editar</string>
+    <string name="action_delete_publication">Eliminar</string>
+    <string name="filter">Filtrar</string>
+    <string name="pets">Mascotas</string>
+    <string name="type">textType</string>
+    <string name="gender_spinner">genderSpinner</string>
+    <string name="vaccinated_spinner">vaccinatedSpinner</string>
+
+
+</resources>

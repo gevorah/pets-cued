@@ -1,10 +1,15 @@
 <resources>
     <string name="app_name">Pet\'s Cued</string>
     <!-- Strings related to login -->
+    <string name="sign_up">Crear Cuenta</string>
+    <string name="register">¡Regístrate!</string>
+    <string name="prompt_name">Nombre</string>
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
+    <string name="prompt_password">Contraseña</string>
     <string name="action_sign_in">Iniciar Sesión</string>
+    <string name="action_sign_up">Crear Cuenta</string>
     <string name="lost_password">¿Olvidaste tu contraseña?</string>
+    <string name="accept_register">Al continuar, está indicando que acepta nuestros Términos y Política de Privacidad.</string>
 
     <string name="name_pet">"name"</string>
 

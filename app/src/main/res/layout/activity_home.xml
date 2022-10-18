@@ -6,9 +6,9 @@
     android:layout_height="match_parent">
 
     <ImageButton
-        android:id="@+id/imageButton8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/lostImageButton"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
         android:layout_marginTop="30dp"
         android:contentDescription="button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,20 +17,23 @@
         app:srcCompat="@mipmap/perdida" />
 
     <ImageButton
-        android:id="@+id/imageButton9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/adoptionImageButton"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
         android:layout_marginTop="15dp"
         android:contentDescription="button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton8"
+        app:layout_constraintTop_toBottomOf="@+id/lostImageButton"
         app:srcCompat="@mipmap/adopcion" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="411dp"
-        android:layout_height="297dp"
-        android:layout_marginTop="15dp"
+        android:id="@+id/homePublicationRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
@@ -44,7 +47,7 @@
         android:text="Mascotas Destacadas"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton9" />
+        app:layout_constraintTop_toBottomOf="@+id/adoptionImageButton" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -53,6 +56,6 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton9"
+        app:layout_constraintTop_toBottomOf="@+id/adoptionImageButton"
         app:srcCompat="@android:drawable/btn_star_big_on" />
 </androidx.constraintlayout.widget.ConstraintLayout>

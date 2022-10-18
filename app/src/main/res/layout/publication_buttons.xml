@@ -9,7 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/petCardView"
-        android:layout_width="200dp"
+        android:layout_width="170dp"
         android:layout_height="145dp"
         app:cardCornerRadius="8dp"
         app:layout_constraintStart_toStartOf="parent"

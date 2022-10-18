@@ -26,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/FilterButton"
+        android:id="@+id/filterPetsButton"
         android:layout_width="357dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -38,7 +38,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/publicationRecyclerView"
+        android:id="@+id/petsPublicationRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="10dp"
@@ -46,7 +46,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FilterButton"
+        app:layout_constraintTop_toBottomOf="@+id/filterPetsButton"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView

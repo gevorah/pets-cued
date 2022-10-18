@@ -18,4 +18,6 @@
     <color name="brown_dark">#635434</color>
     <color name="beige">#FCDFB6</color>
     <color name="ligth_brown">#FFCF9E70</color>
+    <color name="red">#D32626</color>
+    <color name="pink">#F4CECE</color>
 </resources>

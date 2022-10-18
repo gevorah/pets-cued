@@ -25,6 +25,8 @@
     <string name="adress_owner">Dirección del dueño</string>
     <string name="phone_owner">Numero de telefono</string>
     <string name="name_fundation">Nombre de la fundación</string>
+
+    <!-- Strings related to s -->
     <string name="adopcion">Adopción</string>
     <string name="perdido">Perdido</string>
     <string name="mis_publicaciones">Mis Publicaciones</string>
@@ -37,6 +39,8 @@
     <string name="type">textType</string>
     <string name="gender_spinner">genderSpinner</string>
     <string name="vaccinated_spinner">vaccinatedSpinner</string>
+    <string name="ayuda1">¿Cómo publicar mascota perdida?</string>
+    <string name="ayuda1.1">En la pantalla home, oprimir el boton "publicar mascota perdida"?</string>
 
 
 </resources>

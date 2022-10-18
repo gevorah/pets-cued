@@ -3,6 +3,7 @@ package co.edu.icesi.dev.petscued.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import co.edu.icesi.dev.petscued.R
+import co.edu.icesi.dev.petscued.model.Questions
 import kotlinx.android.synthetic.main.activity_help.*
 
 class HelpActivity : AppCompatActivity() {
@@ -15,14 +16,13 @@ class HelpActivity : AppCompatActivity() {
 
         initData()
         setRecyclerView()
-
+    }
 
         private fun setRecyclerView() {
             val questionAdapter = QuestionAdapter(questioList)
             recycler.adapter = questionAdapter
             recycler.setHasFixedSize(true)
         }
-    }
 
         private fun initData() {
             questioList.add(

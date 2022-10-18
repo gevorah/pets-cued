@@ -37,6 +37,18 @@ class HomePublicationActivity : AppCompatActivity() {
             val intent = Intent(this, PetsPublicationActivity::class.java)
             startActivity(intent)
         }
+
+        lostImageButton.setOnClickListener {
+
+            val intent = Intent(this, LostPetActivity::class.java )
+            startActivity(intent)
+        }
+
+        adoptionImageButton.setOnClickListener {
+
+            val intent = Intent(this, AdoptionPetActivity::class.java )
+            startActivity(intent)
+        }
     }
 
     private fun addHardcodedElements() {

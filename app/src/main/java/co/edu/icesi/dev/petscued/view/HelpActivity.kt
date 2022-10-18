@@ -3,6 +3,7 @@ package co.edu.icesi.dev.petscued.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import co.edu.icesi.dev.petscued.R
+import kotlinx.android.synthetic.main.activity_help.*
 
 class HelpActivity : AppCompatActivity() {
 
@@ -14,27 +15,35 @@ class HelpActivity : AppCompatActivity() {
 
         initData()
         setRecyclerView()
+
+
+        private fun setRecyclerView() {
+            val questionAdapter = QuestionAdapter(questioList)
+            recycler.adapter = questionAdapter
+            recycler.setHasFixedSize(true)
+        }
     }
 
-    private fun setRecyclerView() {
-        val questionAdapter = QuestionAdapter(questioList)
-       // recycler.adapter = questionAdapter
-       // recycler.setHasFixedSize(true)
-    }
+        private fun initData() {
+            questioList.add(
+                Questions(
+                    "¿Como publicar una mascota perdida?",
+                    "En la pantalla de inicio oprimir el boton publicar mascosta perdida"
+                )
+            )
+            questioList.add(
+                Questions(
+                    "¿Como publicar una mascota en adopcion?",
+                    "En la pantalla de inicio oprimir el boton publicar mascosta perdida"
+                )
+            )
+            questioList.add(
+                Questions(
+                    "¿Como adoptar una mascota?",
+                    "oprimir sobre la publicacion que te interesa y se desplega la informacion de contacto"
+                )
+            )
 
-    private fun initData() {
-        questioList.add(
-            Questions("¿Como publicar una mascota perdida?",
-            "En la pantalla de inicio oprimir el boton publicar mascosta perdida")
-        )
-        questioList.add(
-            Questions("¿Como publicar una mascota en adopcion?",
-                "En la pantalla de inicio oprimir el boton publicar mascosta perdida")
-        )
-        questioList.add(
-            Questions("¿Como adoptar una mascota?",
-                "oprimir sobre la publicacion que te interesa y se desplega la informacion de contacto")
-        )
+        }
 
-    }
 }

@@ -5,13 +5,14 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
+    android:background="#FFFFFF"
     android:padding="0dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/petCardView"
         android:layout_width="170dp"
         android:layout_height="145dp"
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -19,7 +20,7 @@
             android:id="@+id/petImageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@mipmap/tekila" />
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -63,10 +64,11 @@
         android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:background="#FF9800"
         android:fontFamily="@font/roboto_black"
         android:includeFontPadding="false"
         android:text="@string/action_edit_publication"
-        app:cornerRadius="15dp"
+        app:cornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/petCardView"
         app:layout_constraintTop_toTopOf="parent"
@@ -77,10 +79,11 @@
         android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:background="#82BA6A"
         android:fontFamily="@font/roboto_black"
         android:includeFontPadding="false"
         android:text="@string/action_delete_publication"
-        app:cornerRadius="15dp"
+        app:cornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/petCardView"
         app:layout_constraintTop_toBottomOf="@+id/editButton"

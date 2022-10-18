@@ -13,7 +13,7 @@
         <item name="android:layout_height">48dp</item>
     </style>
     <style name="BasicButton.ActionButton">
-        <item name="android:background">@drawable/border_fillgreen</item>
+        <item name="android:background">@drawable/border_fill_green</item>
     </style>
     <style name="BasicButton.ThirdPartyButton">
         <item name="android:background">@drawable/noborder_fill</item>

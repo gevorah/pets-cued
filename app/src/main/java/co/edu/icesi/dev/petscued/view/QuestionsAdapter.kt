@@ -8,17 +8,18 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.icesi.dev.petscued.R
+import co.edu.icesi.dev.petscued.model.Questions
 
 class QuestionAdapter (val questionList: List<Questions>):
-        RecyclerView.Adapter<QuestionAdapter.QuestionVH>(){
+    RecyclerView.Adapter<QuestionAdapter.QuestionVH>(){
 
-            class QuestionVH(itemView:View): RecyclerView.ViewHolder(itemView){
+    class QuestionVH(itemView:View): RecyclerView.ViewHolder(itemView){
 
-                var questionNametxt : TextView = itemView.findViewById(R.id.questionName)
-                var descriptiontxt : TextView = itemView.findViewById(R.id.description)
-                var linearLayout: LinearLayout = itemView.findViewById(R.id.linearLayout)
-                var expandibleLayout : RelativeLayout= itemView.findViewById(R.id.expandible_layout)
-            }
+        var questionNametxt : TextView = itemView.findViewById(R.id.questionName)
+        var descriptiontxt : TextView = itemView.findViewById(R.id.description)
+        var linearLayout: LinearLayout = itemView.findViewById(R.id.linearLayout)
+        var expandibleLayout : RelativeLayout= itemView.findViewById(R.id.expandible_layout)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestionVH {
         val view : View = LayoutInflater.from(parent.context).inflate(R.layout.fila_help, parent, false)
@@ -42,6 +43,6 @@ class QuestionAdapter (val questionList: List<Questions>):
     }
 
     override fun getItemCount(): Int {
-       return questionList.size
+        return questionList.size
     }
 }

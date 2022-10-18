@@ -28,25 +28,15 @@ class HomePublicationActivity : AppCompatActivity() {
         homePublicationRecyclerView.adapter = homePublicationAdapter
 
         addHardcodedElements()
-        lostImageButton.setOnClickListener{
-            val intent = Intent(this, UserPublicationActivity::class.java)
-            startActivity(intent)
-        }
 
         adoptionImageButton.setOnClickListener{
-            val intent = Intent(this, UserPublicationActivity::class.java)
+            val intent = Intent(this, LostPetActivity::class.java)
             startActivity(intent)
         }
 
         lostImageButton.setOnClickListener {
 
             val intent = Intent(this, LostPetActivity::class.java )
-            startActivity(intent)
-        }
-
-        adoptionImageButton.setOnClickListener {
-
-            val intent = Intent(this, AdoptionPetActivity::class.java )
             startActivity(intent)
         }
     }

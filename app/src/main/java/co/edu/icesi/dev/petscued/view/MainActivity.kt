@@ -7,6 +7,6 @@ import co.edu.icesi.dev.petscued.R
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lostpet)
+        setContentView(R.layout.activity_sign_in)
     }
 }

@@ -16,7 +16,7 @@
         android:fontFamily="@font/roboto_black"
         android:text="Centro de Ayuda"
         android:layout_marginLeft="50dp"
-        android:textColor="@color/dark_green"
+        android:textColor="@color/green_dark"
         android:textSize="34sp" />
 
     <androidx.recyclerview.widget.RecyclerView

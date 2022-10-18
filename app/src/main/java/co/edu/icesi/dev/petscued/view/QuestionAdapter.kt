@@ -1,4 +1,4 @@
-package co.edu.icesi.dev.petscued
+package co.edu.icesi.dev.petscued.view
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.recyclerview.widget.RecyclerView
+import co.edu.icesi.dev.petscued.R
 
 class QuestionAdapter (val questionList: List<Questions>):
         RecyclerView.Adapter<QuestionAdapter.QuestionVH>(){

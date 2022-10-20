@@ -17,48 +17,48 @@
         app:srcCompat="@drawable/logo" />
 
     <Button
-        android:id="@+id/google"
+        android:id="@+id/google_btn"
         style="@style/BasicButton.ThirdPartyButton"
         android:layout_marginBottom="24dp"
         android:drawableStart="@drawable/google"
         android:text="@string/action_google"
-        app:layout_constraintBottom_toTopOf="@+id/facebook"
+        app:layout_constraintBottom_toTopOf="@+id/facebook_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/facebook"
+        android:id="@+id/facebook_btn"
         style="@style/BasicButton.ThirdPartyButton"
         android:layout_marginBottom="24dp"
         android:drawableStart="@drawable/facebook"
         android:text="@string/action_facebook"
-        app:layout_constraintBottom_toTopOf="@+id/apple"
+        app:layout_constraintBottom_toTopOf="@+id/apple_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/apple"
+        android:id="@+id/apple_btn"
         style="@style/BasicButton.ThirdPartyButton"
         android:layout_marginBottom="24dp"
         android:drawableStart="@drawable/apple"
         android:text="@string/action_appple"
-        app:layout_constraintBottom_toTopOf="@+id/email"
+        app:layout_constraintBottom_toTopOf="@+id/email_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/email"
+        android:id="@+id/email_btn"
         style="@style/BasicButton.EmailButton"
         android:layout_marginBottom="24dp"
         android:drawableStart="@drawable/email"
         android:text="@string/action_email"
-        app:layout_constraintBottom_toTopOf="@+id/lost_password"
+        app:layout_constraintBottom_toTopOf="@+id/sign_up_txt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         style="@style/SmallText"
-        android:id="@+id/lost_password"
+        android:id="@+id/sign_up_txt"
         android:text="@string/action_sign_up"
         android:clickable="true"
         android:textColor="@color/blue"

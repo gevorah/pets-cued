@@ -15,7 +15,8 @@
     <string name="accept_register">Al continuar, está indicando que acepta nuestros Términos y Política de Privacidad.</string>
 
 
-    <!-- Strings related to bottom nav -->
+    <!-- Strings related to nav -->
+    <string name="back_nav">Regresar</string>
     <string name="home_nav">Inicio</string>
     <string name="pets_nav">Mascotas</string>
     <string name="account_nav">Perfil</string>

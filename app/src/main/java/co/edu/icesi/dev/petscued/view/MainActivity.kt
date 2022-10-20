@@ -8,9 +8,7 @@ import co.edu.icesi.dev.petscued.R
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
-
-        val intent = Intent(this, HelpActivity::class.java )
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
 }

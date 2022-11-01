@@ -60,7 +60,7 @@ class SignInActivity : AppCompatActivity() {
     }
 
     fun saveUser ( user: User){
-        val sp = getSharedPreferences("appmoviles", MODE_PRIVATE)
+        val sp = getSharedPreferences("pets-cued", MODE_PRIVATE)
         val json = Gson().toJson(user)
         sp.edit().putString("user", json).apply()
     }

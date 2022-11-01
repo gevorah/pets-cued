@@ -3,10 +3,10 @@ package co.edu.icesi.dev.petscued.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.databinding.ActivitySignInBinding
-import co.edu.icesi.dev.petscued.databinding.ActivitySignUpBinding
 import co.edu.icesi.dev.petscued.model.User
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -22,7 +22,7 @@ class SignInActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivitySignInBinding.inflate(layoutInflater)
+        binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         back_title.setText(R.string.action_sign_in)
@@ -30,11 +30,10 @@ class SignInActivity : AppCompatActivity() {
             finish()
         }
 
-        val email = binding.emailFld.text.toString()
-        val password = binding.passwordFld.text.toString()
         binding.signInBtn.setOnClickListener{
-            Firebase.auth.signInWithEmailAndPassword(email,password).addOnSuccessListener {
-
+            val email = binding.emailFld.text.toString()
+            val password = binding.passwordFld.text.toString()
+            Firebase.auth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
                 val fbuser = Firebase.auth.currentUser
                 if(fbuser!!.isEmailVerified){
                    Firebase.firestore.collection("users").document(fbuser.uid).get().addOnSuccessListener {
@@ -57,6 +56,7 @@ class SignInActivity : AppCompatActivity() {
         //    startActivity(intent)
         //}
     }
+
     fun saveUser ( user: User){
         val sp = getSharedPreferences("appmoviles", MODE_PRIVATE)
         val json = Gson().toJson(user)

@@ -39,7 +39,7 @@ class SignUpActivity : AppCompatActivity() {
             binding.passwordFld.text.toString()
             ).addOnSuccessListener {
 
-            val id= Firebase.auth.currentUser?.uid
+            val id = Firebase.auth.currentUser?.uid
                 val user = User(id!!, binding.nameFld.text.toString(),
                     binding.emailFld.text.toString())
 

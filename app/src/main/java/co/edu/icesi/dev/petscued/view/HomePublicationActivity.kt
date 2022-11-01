@@ -30,7 +30,7 @@ class HomePublicationActivity : AppCompatActivity() {
         addHardcodedElements()
 
         adoptionImageButton.setOnClickListener{
-            val intent = Intent(this, LostPetActivity::class.java)
+            val intent = Intent(this, AdoptionPetActivity::class.java)
             startActivity(intent)
         }
 

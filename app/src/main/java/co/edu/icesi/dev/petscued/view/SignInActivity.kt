@@ -10,10 +10,8 @@ import co.edu.icesi.dev.petscued.databinding.ActivitySignInBinding
 import co.edu.icesi.dev.petscued.model.User
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.top_nav.*
 
 class SignInActivity : AppCompatActivity() {
@@ -51,10 +49,14 @@ class SignInActivity : AppCompatActivity() {
             }
         }
 
-        //lost_password_txt.setOnClickListener {
-        //    val intent = Intent(this, Activity::class.java)
-        //    startActivity(intent)
-        //}
+        binding.lostPasswordTxt.setOnClickListener {
+            Firebase.auth.sendPasswordResetEmail(binding.emailFld?.text.toString())
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Revise su correo "+binding.emailFld?.text.toString(), Toast.LENGTH_SHORT).show()
+                }.addOnFailureListener {
+                    Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                }
+        }
     }
 
     fun saveUser ( user: User){

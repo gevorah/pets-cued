@@ -35,7 +35,6 @@ class HomePublicationActivity : AppCompatActivity() {
         }
 
         lostImageButton.setOnClickListener {
-
             val intent = Intent(this, LostPetActivity::class.java )
             startActivity(intent)
         }

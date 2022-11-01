@@ -29,7 +29,7 @@ class SignUpActivity : AppCompatActivity() {
             finish()
         }
 
-       binding.singUpBtn.setOnClickListener(::register)
+        binding.sign_up_btn.setOnClickListener(::register)
 
     }
 
@@ -61,9 +61,3 @@ class SignUpActivity : AppCompatActivity() {
     }
 
 }
-
-
-
-
-
-

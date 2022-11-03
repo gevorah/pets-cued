@@ -1,18 +1,18 @@
-package co.edu.icesi.dev.petscued.view
+package co.edu.icesi.dev.petscued.view.pets
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import co.edu.icesi.dev.petscued.R
-import kotlinx.android.synthetic.main.activity_lostpet.*
+import co.edu.icesi.dev.petscued.view.PetsPublicationActivity
 import kotlinx.android.synthetic.main.activity_petadoption.*
 
-class LostPetActivity : AppCompatActivity() {
+class AdoptionPetActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lostpet)
+        setContentView(R.layout.activity_petadoption)
 
-        lostPetBttn.setOnClickListener {
+        adoptionPetBttn.setOnClickListener {
 
             val intent = Intent(this, PetsPublicationActivity::class.java )
             startActivity(intent)

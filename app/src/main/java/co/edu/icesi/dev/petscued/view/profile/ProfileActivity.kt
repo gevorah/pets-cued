@@ -1,4 +1,4 @@
-package co.edu.icesi.dev.petscued.view
+package co.edu.icesi.dev.petscued.view.profile
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +11,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.ktx.messaging
 import co.edu.icesi.dev.petscued.databinding.ActivityProfileBinding
 import co.edu.icesi.dev.petscued.model.User
+import co.edu.icesi.dev.petscued.view.MainActivity
 import com.google.gson.Gson
 
 class ProfileActivity : AppCompatActivity() {

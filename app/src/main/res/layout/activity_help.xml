@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="8dp"
-    tools:context=".view.HelpActivity">
+    tools:context=".view.profile.HelpActivity">
 
     <TextView
         android:id="@+id/textView18"

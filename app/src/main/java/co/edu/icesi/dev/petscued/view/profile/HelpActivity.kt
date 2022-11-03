@@ -1,4 +1,4 @@
-package co.edu.icesi.dev.petscued.view
+package co.edu.icesi.dev.petscued.view.profile
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

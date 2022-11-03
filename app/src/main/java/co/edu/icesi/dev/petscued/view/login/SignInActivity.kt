@@ -1,13 +1,13 @@
-package co.edu.icesi.dev.petscued.view
+package co.edu.icesi.dev.petscued.view.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.databinding.ActivitySignInBinding
 import co.edu.icesi.dev.petscued.model.User
+import co.edu.icesi.dev.petscued.view.home.HomePublicationActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase

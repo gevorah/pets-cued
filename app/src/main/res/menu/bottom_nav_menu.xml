@@ -6,12 +6,12 @@
         android:title="@string/home_nav"
         android:enabled="true" />
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_pets"
         android:icon="@drawable/paw"
         android:title="@string/pets_nav"
         android:enabled="true" />
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_profile"
         android:icon="@drawable/account"
         android:title="@string/account_nav"
         android:enabled="true" />

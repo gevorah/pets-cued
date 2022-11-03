@@ -27,7 +27,7 @@
         </activity>
         <!-- login -->
         <activity
-            android:name=".view.LoginActivity"
+            android:name=".view.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,7 +38,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.SignUpActivity"
+            android:name=".view.login.SignUpActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,7 +48,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.SignInActivity"
+            android:name=".view.login.SignInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -60,7 +60,7 @@
 
         <!-- x -->
         <activity
-            android:name=".view.HomePublicationActivity"
+            android:name=".view.home.HomePublicationActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -104,7 +104,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.LostPetActivity"
+            android:name=".view.pets.LostPetActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -115,7 +115,29 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.HelpActivity"
+            android:name=".view.pets.AdoptionPetActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".view.profile.HelpActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".view.profile.ProfileActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

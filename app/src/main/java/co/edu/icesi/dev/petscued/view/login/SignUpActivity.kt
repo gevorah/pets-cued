@@ -1,19 +1,16 @@
-package co.edu.icesi.dev.petscued.view
+package co.edu.icesi.dev.petscued.view.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.renderscript.ScriptGroup.Binding
 import android.view.View
 import android.widget.Toast
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.databinding.ActivitySignUpBinding
 import co.edu.icesi.dev.petscued.model.User
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.top_nav.*
 
 class SignUpActivity : AppCompatActivity() {
@@ -49,6 +46,9 @@ class SignUpActivity : AppCompatActivity() {
             }
         }.addOnFailureListener{
             Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+        }.addOnSuccessListener {
+            val intent = Intent(this, SignInActivity::class.java )
+            startActivity(intent)
         }
     }
 

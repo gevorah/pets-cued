@@ -1,4 +1,4 @@
-package co.edu.icesi.dev.petscued.view
+package co.edu.icesi.dev.petscued.view.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

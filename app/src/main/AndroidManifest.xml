@@ -25,7 +25,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <!-- login -->
+        <!-- Login -->
         <activity
             android:name=".view.login.LoginActivity"
             android:exported="true">
@@ -125,8 +125,10 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <!-- Profile -->
         <activity
-            android:name=".view.profile.HelpActivity"
+            android:name=".view.profile.ProfileActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -137,7 +139,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.profile.ProfileActivity"
+            android:name=".view.profile.HelpActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

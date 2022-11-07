@@ -7,7 +7,7 @@ import android.widget.Toast
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.databinding.ActivitySignInBinding
 import co.edu.icesi.dev.petscued.model.User
-import co.edu.icesi.dev.petscued.view.home.HomePublicationActivity
+import co.edu.icesi.dev.petscued.view.MainActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -37,7 +37,7 @@ class SignInActivity : AppCompatActivity() {
                    Firebase.firestore.collection("users").document(fbuser.uid).get().addOnSuccessListener {
                        val user = it.toObject(User::class.java)
                        saveUser(user!!)
-                       startActivity(Intent(this, HomePublicationActivity::class.java))
+                       startActivity(Intent(this, MainActivity::class.java))
                        finish()
                    }
                 } else{

@@ -37,12 +37,12 @@
 
     <EditText
         android:id="@+id/name_fld"
-        style="@style/LoginEditText"
+        style="@style/Widget.App.EditText"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:autofillHints="@string/prompt_email"
-        android:drawableStart="@drawable/account_circle_24px"
+        android:drawableStart="@drawable/ic_outline_account_24"
         android:hint="@string/prompt_name"
         android:inputType="textPersonName"
         android:minHeight="48dp"
@@ -54,12 +54,12 @@
 
     <EditText
         android:id="@+id/email_fld"
-        style="@style/LoginEditText"
+        style="@style/Widget.App.EditText"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:autofillHints="@string/prompt_email"
-        android:drawableStart="@drawable/mail_24px"
+        android:drawableStart="@drawable/ic_mail_24"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
@@ -71,12 +71,12 @@
 
     <EditText
         android:id="@+id/password_fld"
-        style="@style/LoginEditText"
+        style="@style/Widget.App.EditText"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:autofillHints="@string/prompt_email"
-        android:drawableStart="@drawable/vpn_key_24px"
+        android:drawableStart="@drawable/ic_vpn_key_24"
         android:hint="@string/prompt_password"
         android:inputType="textPassword"
         android:minHeight="48dp"
@@ -88,7 +88,7 @@
 
     <Button
         android:id="@+id/singUpBtn"
-        style="@style/BasicButton.ActionButton"
+        style="@style/Widget.App.Button.BorderContained"
         android:layout_gravity="start"
         android:layout_marginTop="24dp"
         android:text="@string/action_sign_up"
@@ -97,7 +97,7 @@
         app:layout_constraintTop_toBottomOf="@+id/password_fld" />
 
     <TextView
-        style="@style/SmallText"
+        style="@style/Widget.App.SmallText"
         android:id="@+id/lost_password"
         android:layout_marginTop="24dp"
         android:text="@string/accept_register"

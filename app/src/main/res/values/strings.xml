@@ -51,6 +51,8 @@
     <string name="vaccinated_spinner">vaccinatedSpinner</string>
     <string name="ayuda1">¿Cómo publicar mascota perdida?</string>
     <string name="ayuda1.1">En la pantalla home, oprimir el boton "publicar mascota perdida"?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

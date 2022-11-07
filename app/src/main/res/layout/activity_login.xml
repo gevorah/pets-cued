@@ -18,9 +18,9 @@
 
     <Button
         android:id="@+id/google_btn"
-        style="@style/BasicButton.ThirdPartyButton"
+        style="@style/Widget.App.Button.Contained"
         android:layout_marginBottom="24dp"
-        android:drawableStart="@drawable/google"
+        android:drawableStart="@drawable/ic_google_24"
         android:text="@string/action_google"
         app:layout_constraintBottom_toTopOf="@+id/facebook_btn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,9 +28,9 @@
 
     <Button
         android:id="@+id/facebook_btn"
-        style="@style/BasicButton.ThirdPartyButton"
+        style="@style/Widget.App.Button.Contained"
         android:layout_marginBottom="24dp"
-        android:drawableStart="@drawable/facebook"
+        android:drawableStart="@drawable/ic_facebook_24"
         android:text="@string/action_facebook"
         app:layout_constraintBottom_toTopOf="@+id/apple_btn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,9 +38,9 @@
 
     <Button
         android:id="@+id/apple_btn"
-        style="@style/BasicButton.ThirdPartyButton"
+        style="@style/Widget.App.Button.Contained"
         android:layout_marginBottom="24dp"
-        android:drawableStart="@drawable/apple"
+        android:drawableStart="@drawable/ic_apple_24"
         android:text="@string/action_appple"
         app:layout_constraintBottom_toTopOf="@+id/email_btn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,16 +48,16 @@
 
     <Button
         android:id="@+id/email_btn"
-        style="@style/BasicButton.EmailButton"
+        style="@style/Widget.App.Button.Outlined"
         android:layout_marginBottom="24dp"
-        android:drawableStart="@drawable/email"
+        android:drawableStart="@drawable/ic_email_24"
         android:text="@string/action_email"
         app:layout_constraintBottom_toTopOf="@+id/sign_up_txt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        style="@style/SmallText"
+        style="@style/Widget.App.SmallText"
         android:id="@+id/sign_up_txt"
         android:text="@string/action_sign_up"
         android:clickable="true"

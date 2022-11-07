@@ -41,8 +41,8 @@ class HomePublicationActivity : AppCompatActivity() {
                     startActivity(Intent(this, ProfileActivity::class.java))
                     return@setOnItemSelectedListener true
                 }
-                else -> false
             }
+            true
         }
 
         this.publicationLayoutManager = GridLayoutManager(this, 2)

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Pet\'s Cued</string>
-    <!-- Strings related to login -->
+    <!-- strings related to login -->
     <string name="action_google">Continuar con Google</string>
     <string name="action_facebook">Continuar con Facebook</string>
     <string name="action_appple">Continuar con Apple</string>
@@ -15,13 +15,13 @@
     <string name="accept_register">Al continuar, está indicando que acepta nuestros Términos y Política de Privacidad.</string>
 
 
-    <!-- Strings related to nav -->
+    <!-- strings related to nav -->
     <string name="back_nav">Regresar</string>
     <string name="home_nav">Inicio</string>
     <string name="pets_nav">Mascotas</string>
     <string name="account_nav">Perfil</string>
 
-    <!-- Strings related to pets -->
+    <!-- strings related to pets -->
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome!"</string>
     <string name="invalid_username">Not a valid username</string>
@@ -37,7 +37,7 @@
     <string name="phone_owner">Numero de telefono</string>
     <string name="name_fundation">Nombre de la fundación</string>
 
-    <!-- Strings related to s -->
+    <!-- strings related to s -->
     <string name="adopcion">Adopción</string>
     <string name="perdido">Perdido</string>
     <string name="mis_publicaciones">Mis Publicaciones</string>
@@ -51,8 +51,23 @@
     <string name="vaccinated_spinner">vaccinatedSpinner</string>
     <string name="ayuda1">¿Cómo publicar mascota perdida?</string>
     <string name="ayuda1.1">En la pantalla home, oprimir el boton "publicar mascota perdida"?</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <!-- strings related to profile -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile_title">Perfil</string>
+    <string name="username">Nombre</string>
+    <string name="email">Email</string>
+    <string name="phone">Teléfono</string>
+    <string name="content_title">Contenido</string>
+    <string name="publications">Administrar publicaciones</string>
+    <string name="user_title">Usuario</string>
+    <string name="edit_profile">Editar perfil</string>
+    <string name="support_title">Ayuda</string>
+    <string name="questions">Preguntas frecuentes</string>
+    <string name="chat">Chat en línea</string>
+    <string name="contact">Contáctanos</string>
+    <string name="logout">Cerrar Sesión</string>
+    <string name="save">Guardar</string>
 
 
 </resources>

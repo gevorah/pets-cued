@@ -9,12 +9,12 @@ import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.view.home.HomeFragment
 import co.edu.icesi.dev.petscued.view.home.HomePublicationActivity
 import co.edu.icesi.dev.petscued.view.login.LoginActivity
-import co.edu.icesi.dev.petscued.view.profile.ProfileActivity
 import co.edu.icesi.dev.petscued.view.profile.ProfileFragment
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -44,6 +44,20 @@ class MainActivity : AppCompatActivity() {
         }
         //val intent = Intent(this, LoginActivity::class.java)
         //startActivity(intent)
+    }
+
+    private fun badgeSetup(id: Int, alerts: Int) {
+        val badge = bottom_navigation.getOrCreateBadge(id)
+        badge.isVisible = true
+        badge.number = alerts
+    }
+
+    private fun badgeClear(id: Int) {
+        val badgeDrawable = bottom_navigation.getBadge(id)
+        if (badgeDrawable != null) {
+            badgeDrawable.isVisible = false
+            badgeDrawable.clearNumber()
+        }
     }
 
     private fun setCurrentFragment(fragment: Fragment) = supportFragmentManager.beginTransaction().apply {

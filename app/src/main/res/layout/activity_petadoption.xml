@@ -50,7 +50,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
-            android:fontFamily="@font/roboto_regular"
             android:text="Nombre"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/photoImg" />
@@ -64,7 +63,6 @@
             android:layout_marginEnd="35dp"
             android:background="@drawable/border_fill_green"
             android:ems="10"
-            android:fontFamily="@font/roboto_regular"
             android:inputType="textPersonName"
             android:text="@string/name_pet"
             android:textSize="12sp"
@@ -81,7 +79,6 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
             android:text="Color"
-            android:fontFamily="@font/roboto_regular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
@@ -94,7 +91,6 @@
             android:layout_marginEnd="35dp"
             android:background="@drawable/border_fill_green"
             android:ems="10"
-            android:fontFamily="@font/roboto_regular"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:text="@string/color_pet"
@@ -111,7 +107,6 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
             android:text="Raza"
-            android:fontFamily="@font/roboto_regular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
@@ -124,7 +119,6 @@
             android:layout_marginEnd="35dp"
             android:background="@drawable/border_fill_green"
             android:ems="10"
-            android:fontFamily="@font/roboto_regular"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:text="@string/breed_pet"
@@ -141,7 +135,6 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
             android:text="Edad"
-            android:fontFamily="@font/roboto_regular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
 
@@ -154,7 +147,6 @@
             android:layout_marginEnd="35dp"
             android:background="@drawable/border_fill_green"
             android:ems="10"
-            android:fontFamily="@font/roboto_regular"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:text="@string/age_pet"
@@ -170,7 +162,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
-            android:fontFamily="@font/roboto_regular"
             android:text="Nombre Fundación"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
@@ -184,7 +175,6 @@
             android:layout_marginEnd="35dp"
             android:background="@drawable/border_fill_green"
             android:ems="10"
-            android:fontFamily="@font/roboto_regular"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:text="@string/name_fundation"
@@ -201,7 +191,6 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="140dp"
             android:text="Telefono"
-            android:fontFamily="@font/roboto_regular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
 
@@ -212,7 +201,6 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="132dp"
             android:text="Dirección"
-            android:fontFamily="@font/roboto_regular"
             app:layout_constraintEnd_toStartOf="@+id/textView6"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
 
@@ -224,7 +212,6 @@
             android:layout_marginEnd="20dp"
             android:background="@drawable/border_fill_green"
             android:ems="10"
-            android:fontFamily="@font/roboto_regular"
             android:inputType="textPersonName"
             android:text="@string/phone_owner"
             android:textSize="12sp"
@@ -239,7 +226,6 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/border_fill_green"
             android:ems="10"
-            android:fontFamily="@font/roboto_regular"
             android:inputType="textPersonName"
             android:text="@string/adress_owner"
             android:textSize="12sp"
@@ -253,7 +239,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
-            android:fontFamily="@font/roboto_regular"
             android:text="Tipo de mascota"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName7" />
@@ -355,7 +340,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="140dp"
-            android:fontFamily="@font/roboto_regular"
             android:text="Vacunas"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6" />
@@ -394,7 +378,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="160dp"
-            android:fontFamily="@font/roboto_regular"
             android:text="Sexo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />

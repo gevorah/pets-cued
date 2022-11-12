@@ -45,7 +45,6 @@
                 android:id="@+id/textView22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_regular"
                 android:text="Santa Monica, Cali"
                 android:textColor="#33691E" />
         </LinearLayout>
@@ -79,7 +78,6 @@
                 android:id="@+id/textView24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_regular"
                 android:text="Fundación Animalitos"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -115,7 +113,6 @@
                 android:id="@+id/textView26"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_regular"
                 android:text="Hembra"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -149,7 +146,6 @@
                 android:id="@+id/textView28"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_regular"
                 android:text="4 meses"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -184,7 +180,6 @@
                 android:id="@+id/textView30"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_regular"
                 android:text="Mestizo"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -222,7 +217,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/roboto_regular"
                 android:text="El dueño no compartió mas detalles"
                 android:textSize="12sp" />
 
@@ -242,7 +236,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/roboto_regular"
                 android:text="Telefono: 3145869878"
                 android:textSize="12sp" />
 
@@ -252,7 +245,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/roboto_regular"
                 android:text="Correo: hzchr@gmail.com"
                 android:textSize="12sp" />
 
@@ -262,7 +254,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/roboto_regular"
                 android:text="Dirección: Av 8 nte # 25-125 "
                 android:textSize="12sp" />
         </LinearLayout>

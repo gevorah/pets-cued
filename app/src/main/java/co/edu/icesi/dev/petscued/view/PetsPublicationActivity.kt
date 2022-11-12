@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.model.Publication
-import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_pets.*
 import kotlinx.android.synthetic.main.activity_publication.*
 import java.util.*

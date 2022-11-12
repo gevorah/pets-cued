@@ -7,10 +7,8 @@ import android.os.Handler
 import androidx.fragment.app.Fragment
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.view.home.HomeFragment
-import co.edu.icesi.dev.petscued.view.home.HomePublicationActivity
 import co.edu.icesi.dev.petscued.view.login.LoginActivity
 import co.edu.icesi.dev.petscued.view.profile.ProfileFragment
-import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

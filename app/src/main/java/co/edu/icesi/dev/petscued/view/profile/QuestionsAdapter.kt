@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.model.Questions
 
-class QuestionAdapter (val questionList: List<Questions>):
-    RecyclerView.Adapter<QuestionAdapter.QuestionVH>(){
+class QuestionsAdapter (val questionList: List<Questions>):
+    RecyclerView.Adapter<QuestionsAdapter.QuestionVH>(){
 
     class QuestionVH(itemView:View): RecyclerView.ViewHolder(itemView){
 

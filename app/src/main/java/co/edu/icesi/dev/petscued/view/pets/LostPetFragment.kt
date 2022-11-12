@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import co.edu.icesi.dev.petscued.databinding.FragmentLosPetBinding
 import co.edu.icesi.dev.petscued.databinding.FragmentLostPetBinding
 
 class LostPetFragment : Fragment() {
@@ -17,13 +16,9 @@ class LostPetFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentLostPetBinding.inflate(inflater, container, false)
-        binding.lostPetBttn.setOnClickListener(::changeScreen)
+        binding.lostPetBttn.setOnClickListener {
+            // pets publication fragment
+        }
         return binding.root
     }
-
-    private fun changeScreen(view: View?) {
-
-    }
-
-
 }

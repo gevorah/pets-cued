@@ -12,13 +12,14 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.ktx.messaging
 import co.edu.icesi.dev.petscued.databinding.FragmentEditProfileBinding
+import co.edu.icesi.dev.petscued.databinding.FragmentProfileBinding
 import co.edu.icesi.dev.petscued.model.User
 import co.edu.icesi.dev.petscued.view.MainActivity
 import com.google.gson.Gson
 
 class EditProfileFragment : Fragment() {
 
-    private lateinit var binding:FragmentEditProfileBinding
+    private lateinit var binding: FragmentEditProfileBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,30 +28,38 @@ class EditProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = FragmentEditProfileBinding.inflate(inflater, container, false).root
+    ): View?
+    {
+        val binding = FragmentEditProfileBinding.inflate(inflater, container, false)
+        binding.saveBtn.setOnClickListener(::changePassword)
+        //android:afterTextChanged="@{(edtitable)->LoginVM.afterUserNameChange(edtitable)}"
+        //public void afterUserNameChange(CharSequence s)
+        //{ Log.i("truc", s.toString()) }
+        return binding.root
+    }
 
-    /*private fun changePassword(view: View){
-        val newPassword = binding.newpassET.editText?.text.toString()
+    private fun changePassword(view: View){
+        val newPassword = binding.editPassword1Txt.text.toString()
 
         if(newPassword.isEmpty()){
-            binding.newpassET.error = "El campo no puede estar vacío"
+            binding.editPassword1Txt.error = "El campo no puede estar vacío"
             return
-        }else binding.newpassET.error = null
+        }else binding.editPassword1Txt.error = null
 
         if(newPassword.length < 6){
-            binding.newpassET.error = "La contraseña está muy corta, mínimo 6 caracteres"
+            binding.editPassword1Txt.error = "La contraseña está muy corta, mínimo 6 caracteres"
             return
-        }else binding.newpassET.error = null
+        }else binding.editPassword1Txt.error = null
 
-        val builder = AlertDialog.Builder(this)
+        val builder = AlertDialog.Builder(requireContext())
             .setTitle("Cambio de contraseña")
             .setMessage("¿Desea cambiar la contraseña?")
             .setPositiveButton("Si"){ dialog, _ ->
                 Firebase.auth.currentUser?.updatePassword(newPassword)?.addOnSuccessListener {
-                    Toast.makeText(this, "Contraseña cambiada!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Contraseña cambiada!", Toast.LENGTH_SHORT).show()
                     dialog.dismiss()
                 }?.addOnFailureListener {
-                    Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
                     dialog.dismiss()
                 }
             }
@@ -58,5 +67,5 @@ class EditProfileFragment : Fragment() {
                 dialog.dismiss()
             }
         builder.show()
-    }*/
+    }
 }

@@ -33,6 +33,10 @@ class ProfileFragment : Fragment() {
     ): View? //= inflater.inflate(R.layout.fragment_profile, container, false)
     {
         val binding = FragmentProfileBinding.inflate(inflater, container, false)
+        binding.editProfileBtn.setOnClickListener {
+            val editProfileFragment = EditProfileFragment()
+            setFragment(editProfileFragment)
+        }
         binding.logOutBtn.setOnClickListener(::logout)
         return binding.root
     }
@@ -54,6 +58,12 @@ class ProfileFragment : Fragment() {
             Toast.makeText(context, "Hola ${user.name}", Toast.LENGTH_LONG).show()
         }
         Firebase.messaging.subscribeToTopic(user.id)
+    }
+
+    private fun setFragment(fragment: Fragment) = requireActivity().supportFragmentManager.beginTransaction().apply {
+        replace(R.id.fl_wrapper, fragment)
+        addToBackStack(null)
+        commit()
     }
 
     private fun loadUser(): User? {

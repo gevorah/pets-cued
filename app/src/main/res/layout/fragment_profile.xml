@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.profile.ProfileFragment">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    tools:context=".view.profile.ProfileFragment" >
 
         <ImageView
             android:id="@+id/header"
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="150dp"
             android:src="@drawable/rectangle_figure"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,8 +19,11 @@
             android:id="@+id/profile_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/profile_title"
+            android:layout_marginTop="20dp"
+            android:text="@string/profile"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/beige"
+            android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/header" />
@@ -34,7 +32,7 @@
             android:id="@+id/profile_pic"
             android:layout_width="128dp"
             android:layout_height="128dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:src="@drawable/logo"
             android:background="@drawable/profilephoto_style"
             android:foreground="@drawable/profilephoto_style"
@@ -47,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/username"
+            android:text="@string/prompt_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile_pic" />
@@ -57,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/email"
+            android:text="@string/prompt_email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/username_txt" />
@@ -67,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/phone"
+            android:text="@string/prompt_phone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/email_txt" />
@@ -76,19 +74,15 @@
             android:id="@+id/content_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="8dp"
-            android:text="@string/content_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:text="@string/content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/contact_txt" />
 
         <Button
+            style="@style/Widget.App.Button.Text"
             android:id="@+id/publications_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="3dp"
             android:text="@string/publications"
             app:layout_constraintEnd_toEndOf="parent"
@@ -99,18 +93,15 @@
             android:id="@+id/user_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="8dp"
-            android:text="@string/user_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:text="@string/user"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/publications_btn" />
 
         <Button
+            style="@style/Widget.App.Button.Text"
             android:id="@+id/edit_profile_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:text="@string/edit_profile"
             app:layout_constraintEnd_toEndOf="parent"
@@ -121,18 +112,15 @@
             android:id="@+id/support_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="8dp"
-            android:text="@string/support_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:text="@string/support"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_profile_btn" />
 
         <Button
+            style="@style/Widget.App.Button.Text"
             android:id="@+id/questions_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:text="@string/questions"
             app:layout_constraintEnd_toEndOf="parent"
@@ -140,9 +128,8 @@
             app:layout_constraintTop_toBottomOf="@+id/support_title" />
 
         <Button
+            style="@style/Widget.App.Button.Text"
             android:id="@+id/chat_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:text="@string/chat"
             app:layout_constraintEnd_toEndOf="parent"
@@ -150,9 +137,8 @@
             app:layout_constraintTop_toBottomOf="@+id/questions_btn" />
 
         <Button
+            style="@style/Widget.App.Button.Text"
             android:id="@+id/contact_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:text="@string/contact"
             app:layout_constraintEnd_toEndOf="parent"
@@ -168,5 +154,4 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/contact_btn" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,12 +23,12 @@ class MainActivity : AppCompatActivity() {
         val homeFragment = HomeFragment()
         val profileFragment = ProfileFragment()
 
-        setCurrentFragment(homeFragment)
+        setFragment(homeFragment)
 
         bottom_navigation?.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_home -> {
-                    setCurrentFragment(homeFragment)
+                    setFragment(homeFragment)
                     return@setOnItemSelectedListener true
                 }
                 R.id.navigation_pets -> {
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
                     return@setOnItemSelectedListener true
                 }
                 R.id.navigation_profile -> {
-                    setCurrentFragment(profileFragment)
+                    setFragment(profileFragment)
                     return@setOnItemSelectedListener true
                 }
             }
@@ -60,8 +60,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setCurrentFragment(fragment: Fragment) = supportFragmentManager.beginTransaction().apply {
+    private fun setFragment(fragment: Fragment) = supportFragmentManager.beginTransaction().apply {
         replace(R.id.fl_wrapper, fragment)
+        addToBackStack(null)
         commit()
     }
 

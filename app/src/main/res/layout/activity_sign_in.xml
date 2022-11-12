@@ -30,35 +30,29 @@
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <EditText
-        style="@style/Widget.App.EditText"
+        style="@style/Widget.App.EditText.RoundBox"
         android:id="@+id/email_fld"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:autofillHints="@string/prompt_email"
         android:drawableStart="@drawable/ic_outline_account_24"
-        android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
-        android:minHeight="48dp"
+        android:hint="@string/prompt_email"
+        android:autofillHints="@string/prompt_email"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <EditText
-        style="@style/Widget.App.EditText"
+        style="@style/Widget.App.EditText.RoundBox"
         android:id="@+id/password_fld"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:autofillHints="@string/prompt_password"
         android:drawableStart="@drawable/ic_vpn_key_24"
         android:drawableEnd="@drawable/ic_visibility_off_24"
-        android:hint="@string/prompt_password"
-        android:imeOptions="actionDone"
         android:inputType="textPassword"
-        android:minHeight="48dp"
+        android:hint="@string/prompt_password"
+        android:autofillHints="@string/prompt_password"
         android:selectAllOnFocus="true"
+        android:imeOptions="actionDone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email_fld" />

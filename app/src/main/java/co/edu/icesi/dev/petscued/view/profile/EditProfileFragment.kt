@@ -26,35 +26,37 @@ class EditProfileFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View?
-    {
-        val binding = FragmentEditProfileBinding.inflate(inflater, container, false)
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentEditProfileBinding.inflate(inflater, container, false)
+
         binding.saveBtn.setOnClickListener(::changePassword)
         //android:afterTextChanged="@{(edtitable)->LoginVM.afterUserNameChange(edtitable)}"
         //public void afterUserNameChange(CharSequence s)
         //{ Log.i("truc", s.toString()) }
+
         return binding.root
     }
 
-    private fun changePassword(view: View){
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun changePassword(view: View) {
         val newPassword = binding.editPassword1Txt.text.toString()
 
-        if(newPassword.isEmpty()){
+        if (newPassword.isEmpty()) {
             binding.editPassword1Txt.error = "El campo no puede estar vacío"
             return
-        }else binding.editPassword1Txt.error = null
+        } else binding.editPassword1Txt.error = null
 
-        if(newPassword.length < 6){
+        if (newPassword.length < 6) {
             binding.editPassword1Txt.error = "La contraseña está muy corta, mínimo 6 caracteres"
             return
-        }else binding.editPassword1Txt.error = null
+        } else binding.editPassword1Txt.error = null
 
-        val builder = AlertDialog.Builder(requireContext())
-            .setTitle("Cambio de contraseña")
-            .setMessage("¿Desea cambiar la contraseña?")
-            .setPositiveButton("Si"){ dialog, _ ->
+        val builder = AlertDialog.Builder(requireContext()).setTitle("Cambio de contraseña")
+            .setMessage("¿Desea cambiar la contraseña?").setPositiveButton("Si") { dialog, _ ->
                 Firebase.auth.currentUser?.updatePassword(newPassword)?.addOnSuccessListener {
                     Toast.makeText(context, "Contraseña cambiada!", Toast.LENGTH_SHORT).show()
                     dialog.dismiss()
@@ -62,8 +64,7 @@ class EditProfileFragment : Fragment() {
                     Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
                     dialog.dismiss()
                 }
-            }
-            .setNegativeButton("No"){ dialog, _ ->
+            }.setNegativeButton("No") { dialog, _ ->
                 dialog.dismiss()
             }
         builder.show()

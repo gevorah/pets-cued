@@ -16,17 +16,16 @@ class HelpFragment : Fragment() {
     val questioList = ArrayList<Questions>()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        initData()
-        setRecyclerView()
         val binding = FragmentHelpBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initData()
+        setRecyclerView()
     }
 
     private fun setRecyclerView() {

@@ -1,42 +1,49 @@
-package co.edu.icesi.dev.petscued.view
+package co.edu.icesi.dev.petscued.view.profile
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import co.edu.icesi.dev.petscued.R
+import co.edu.icesi.dev.petscued.databinding.FragmentUserPublicationsBinding
 import co.edu.icesi.dev.petscued.model.Publication
-import kotlinx.android.synthetic.main.activity_publication.*
+import kotlinx.android.synthetic.main.fragment_user_publications.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-class UserPublicationActivity : AppCompatActivity() {
+class UserPublicationsFragment : Fragment() {
 
+    private lateinit var binding: FragmentUserPublicationsBinding
     private lateinit var publicationLayoutManager: LinearLayoutManager
     private lateinit var userPublicationAdapter: UserPublicationAdapter
     private lateinit var publicationList: ArrayList<Publication>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_publication)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentUserPublicationsBinding.inflate(inflater, container, false)
 
-        publicationLayoutManager = LinearLayoutManager(this)
+        binding.lostPublicationButton.setOnClickListener {
+            filterPublicationListByStatus(Publication.LOST)
+        }
+        binding.adoptionPublicationButton.setOnClickListener {
+            filterPublicationListByStatus(Publication.ADOPTION)
+        }
+        binding.addFloatingActionButton.setOnClickListener(::addHardcodedElements)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        publicationLayoutManager = LinearLayoutManager(context)
         userPublicationRecyclerView.layoutManager = publicationLayoutManager
         userPublicationRecyclerView.setHasFixedSize(true)
 
         userPublicationAdapter = UserPublicationAdapter()
         userPublicationRecyclerView.adapter = userPublicationAdapter
-
-        lostPublicationButton.setOnClickListener{
-            filterPublicationListByStatus(Publication.LOST)
-        }
-
-        adoptionPublicationButton.setOnClickListener{
-            filterPublicationListByStatus(Publication.ADOPTION)
-        }
-
-        addFloatingActionButton.setOnClickListener {
-            addHardcodedElements()
-        }
     }
 
     private fun filterPublicationListByStatus(status: String){
@@ -46,7 +53,7 @@ class UserPublicationActivity : AppCompatActivity() {
         userPublicationAdapter.setPublicationList(filteredPublicationList as ArrayList<Publication>)
     }
 
-    private fun addHardcodedElements() {
+    private fun addHardcodedElements(view: View) {
         this.publicationList = ArrayList()
         publicationList.add(Publication(
             UUID.randomUUID(),

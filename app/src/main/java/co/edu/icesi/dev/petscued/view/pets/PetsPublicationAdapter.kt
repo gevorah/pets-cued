@@ -1,4 +1,4 @@
-package co.edu.icesi.dev.petscued.view
+package co.edu.icesi.dev.petscued.view.pets
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

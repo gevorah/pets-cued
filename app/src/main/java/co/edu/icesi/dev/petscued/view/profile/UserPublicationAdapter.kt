@@ -1,4 +1,4 @@
-package co.edu.icesi.dev.petscued.view
+package co.edu.icesi.dev.petscued.view.profile
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,8 +7,9 @@ import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.model.Publication
 import kotlin.collections.ArrayList
 
-class UserPublicationAdapter : RecyclerView.Adapter<UserPublicationView>(), UserPublicationView.OnPublicationEdit,
-    UserPublicationView.OnPublicationDelete{
+class UserPublicationAdapter : RecyclerView.Adapter<UserPublicationView>(),
+    UserPublicationView.OnPublicationEdit,
+    UserPublicationView.OnPublicationDelete {
 
     private var publicationList = ArrayList<Publication>()
 

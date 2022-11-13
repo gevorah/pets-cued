@@ -32,18 +32,27 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? //= inflater.inflate(R.layout.fragment_profile, container, false)
     {
-        val binding = FragmentProfileBinding.inflate(inflater, container, false)
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
+
+        binding.publicationsBtn.setOnClickListener {
+            val userPublicationsFragment = UserPublicationsFragment()
+            setFragment(userPublicationsFragment)
+        }
         binding.editProfileBtn.setOnClickListener {
             val editProfileFragment = EditProfileFragment()
             setFragment(editProfileFragment)
         }
+        binding.questionsBtn.setOnClickListener {
+            val helpFragment = HelpFragment()
+            setFragment(helpFragment)
+        }
         binding.logOutBtn.setOnClickListener(::logout)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Toast.makeText(context,"Profile", Toast.LENGTH_SHORT).show()
 
         profile_pic.setImageBitmap(ImageUtils.getRoundBitmap(profile_pic.drawable.toBitmap()))
 

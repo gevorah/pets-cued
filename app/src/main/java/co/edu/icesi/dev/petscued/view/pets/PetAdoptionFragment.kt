@@ -13,23 +13,28 @@ import co.edu.icesi.dev.petscued.databinding.FragmentProfileBinding
 class PetAdoptionFragment : Fragment() {
 
     private lateinit var binding: FragmentPetAdoptionBinding
-    
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentPetAdoptionBinding.inflate(inflater, container, false)
 
+        binding.adoptionPetBttn.setOnClickListener {
+            val petsFragment = PetsFragment()
+            setFragment(petsFragment)
+        }
 
-        val binding = FragmentPetAdoptionBinding.inflate(inflater, container, false)
-        binding.adoptionPetBttn.setOnClickListener(::changeScreen)
         return binding.root
-
-        return inflater.inflate(R.layout.fragment_pet_adoption, container, false)
     }
 
-    private fun changeScreen(view: View?) {
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 
-
+    private fun setFragment(fragment: Fragment) = requireActivity().supportFragmentManager.beginTransaction().apply {
+        replace(R.id.fl_wrapper, fragment)
+        addToBackStack(null)
+        commit()
+    }
 }

@@ -1,4 +1,4 @@
-package co.edu.icesi.dev.petscued.view.home
+package co.edu.icesi.dev.petscued.view.pets
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,33 +7,33 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import co.edu.icesi.dev.petscued.R
-import co.edu.icesi.dev.petscued.databinding.FragmentHomeBinding
+import co.edu.icesi.dev.petscued.databinding.FragmentPetsBinding
 import co.edu.icesi.dev.petscued.model.Publication
-import co.edu.icesi.dev.petscued.view.pets.LostPetFragment
-import co.edu.icesi.dev.petscued.view.pets.PetAdoptionFragment
-import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_pets.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-class HomeFragment : Fragment() {
+class PetsFragment : Fragment() {
 
-    private lateinit var binding: FragmentHomeBinding
+    private lateinit var binding: FragmentPetsBinding
     private lateinit var publicationLayoutManager: GridLayoutManager
-    private lateinit var homePublicationAdapter: HomePublicationAdapter
+    private lateinit var petsPublicationAdapter: PetsPublicationAdapter
     private lateinit var publicationList: ArrayList<Publication>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding = FragmentPetsBinding.inflate(inflater, container, false)
 
-        binding.lostImageButton.setOnClickListener {
-            val lostPetFragment = LostPetFragment()
-            setFragment(lostPetFragment)
+        binding.adoptionPetsButton.setOnClickListener {
+            filterPublicationListByStatus(Publication.LOST)
         }
-        binding.adoptionImageButton.setOnClickListener {
-            val petAdoptionFragment = PetAdoptionFragment()
-            setFragment(petAdoptionFragment)
+        binding.lostPetsButton.setOnClickListener {
+            filterPublicationListByStatus(Publication.ADOPTION)
+        }
+        binding.filterPetsButton.setOnClickListener {
+            val publicationFilterFragment = PublicationFilterFragment()
+            setFragment(publicationFilterFragment)
         }
 
         return binding.root
@@ -43,21 +43,27 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         this.publicationLayoutManager = GridLayoutManager(context, 2)
-        homePublicationRecyclerView.layoutManager = publicationLayoutManager
-        homePublicationRecyclerView.setHasFixedSize(true)
+        petsPublicationRecyclerView.layoutManager = publicationLayoutManager
+        petsPublicationRecyclerView.setHasFixedSize(true)
 
-        homePublicationAdapter = HomePublicationAdapter()
-        homePublicationRecyclerView.adapter = homePublicationAdapter
+        petsPublicationAdapter = PetsPublicationAdapter()
+        petsPublicationRecyclerView.adapter = petsPublicationAdapter
 
         addHardcodedElements()
     }
 
-    private fun setFragment(fragment: Fragment) =
-        requireActivity().supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fl_wrapper, fragment)
-            addToBackStack(null)
-            commit()
+    private fun setFragment(fragment: Fragment) = requireActivity().supportFragmentManager.beginTransaction().apply {
+        replace(R.id.fl_wrapper, fragment)
+        addToBackStack(null)
+        commit()
+    }
+
+    private fun filterPublicationListByStatus(status: String) {
+        val filteredPublicationList: List<Publication> = publicationList.filter { publication ->
+            publication.status.equals(status, ignoreCase = true)
         }
+        petsPublicationAdapter.setPublicationList(filteredPublicationList as ArrayList<Publication>)
+    }
 
     private fun addHardcodedElements() {
         this.publicationList = ArrayList()
@@ -115,6 +121,6 @@ class HomeFragment : Fragment() {
                 "Sí"
             )
         )
-        homePublicationAdapter.setPublicationList(publicationList)
+        petsPublicationAdapter.setPublicationList(publicationList)
     }
 }

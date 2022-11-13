@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.view.home.HomeFragment
 import co.edu.icesi.dev.petscued.view.login.LoginActivity
+import co.edu.icesi.dev.petscued.view.pets.PetsFragment
 import co.edu.icesi.dev.petscued.view.profile.ProfileFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val homeFragment = HomeFragment()
+        val petsFragment = PetsFragment()
         val profileFragment = ProfileFragment()
 
         setFragment(homeFragment)
@@ -30,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                     return@setOnItemSelectedListener true
                 }
                 R.id.navigation_pets -> {
-
+                    setFragment(petsFragment)
                     return@setOnItemSelectedListener true
                 }
                 R.id.navigation_profile -> {

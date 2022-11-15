@@ -60,7 +60,7 @@
         app:layout_constraintTop_toBottomOf="@+id/username_txt" />
 
     <TextView
-        android:id="@+id/contact_txt"
+        android:id="@+id/phone_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -70,6 +70,7 @@
         app:layout_constraintTop_toBottomOf="@+id/email_txt" />
 
     <TextView
+        style="@style/Widget.App.Text.Subtitle"
         android:id="@+id/content_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -77,18 +78,21 @@
         android:layout_marginTop="8dp"
         android:text="@string/content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contact_txt" />
+        app:layout_constraintTop_toBottomOf="@+id/phone_txt" />
 
     <Button
         android:id="@+id/publications_btn"
         style="@style/Widget.App.Button.Text"
         android:layout_marginTop="3dp"
         android:text="@string/publications"
+        android:drawableStart="@drawable/ic_list_24"
+        android:drawableEnd="@drawable/ic_navigate_next_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/content_title" />
 
     <TextView
+        style="@style/Widget.App.Text.Subtitle"
         android:id="@+id/user_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -103,11 +107,14 @@
         style="@style/Widget.App.Button.Text"
         android:layout_marginTop="3dp"
         android:text="@string/edit_profile"
+        android:drawableStart="@drawable/ic_edit_24"
+        android:drawableEnd="@drawable/ic_navigate_next_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_title" />
 
     <TextView
+        style="@style/Widget.App.Text.Subtitle"
         android:id="@+id/support_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -118,10 +125,12 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_profile_btn" />
 
     <Button
-        android:id="@+id/questions_btn"
         style="@style/Widget.App.Button.Text"
+        android:id="@+id/questions_btn"
         android:layout_marginTop="3dp"
         android:text="@string/questions"
+        android:drawableStart="@drawable/ic_help_24"
+        android:drawableEnd="@drawable/ic_navigate_next_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/support_title" />
@@ -131,6 +140,8 @@
         style="@style/Widget.App.Button.Text"
         android:layout_marginTop="3dp"
         android:text="@string/chat"
+        android:drawableStart="@drawable/ic_chat_24"
+        android:drawableEnd="@drawable/ic_navigate_next_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/questions_btn" />
@@ -140,6 +151,8 @@
         style="@style/Widget.App.Button.Text"
         android:layout_marginTop="3dp"
         android:text="@string/contact"
+        android:drawableStart="@drawable/ic_support_agent_24"
+        android:drawableEnd="@drawable/ic_navigate_next_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chat_btn" />

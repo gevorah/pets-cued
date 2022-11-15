@@ -16,6 +16,7 @@ import co.edu.icesi.dev.petscued.model.User
 import co.edu.icesi.dev.petscued.utils.ImageUtils
 import co.edu.icesi.dev.petscued.view.MainActivity
 import co.edu.icesi.dev.petscued.view.login.LoginActivity
+import co.edu.icesi.dev.petscued.view.login.SignInActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.ktx.messaging
@@ -30,7 +31,7 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? //= inflater.inflate(R.layout.fragment_profile, container, false)
+    ): View?
     {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
 
@@ -54,7 +55,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        profile_pic.setImageBitmap(ImageUtils.getRoundBitmap(profile_pic.drawable.toBitmap()))
+        binding.profilePic.setImageBitmap(ImageUtils.getRoundBitmap(binding.profilePic.drawable.toBitmap()))
 
         val user = loadUser()
         if(user == null || Firebase.auth.currentUser == null || Firebase.auth.currentUser?.isEmailVerified == false){
@@ -64,9 +65,11 @@ class ProfileFragment : Fragment() {
             return
         }else{
             this.user = user
-            Toast.makeText(context, "Hola ${user.name}", Toast.LENGTH_LONG).show()
         }
         Firebase.messaging.subscribeToTopic(user.id)
+        binding.usernameTxt.text = user.name
+        binding.emailTxt.text = user.email
+        binding.phoneTxt.text = "3214567890"
     }
 
     private fun setFragment(fragment: Fragment) = requireActivity().supportFragmentManager.beginTransaction().apply {
@@ -88,7 +91,7 @@ class ProfileFragment : Fragment() {
     private fun logout(view: View){
         activity?.finish()
         val user = loadUser()
-        val intent = Intent(context, MainActivity::class.java)
+        val intent = Intent(context, LoginActivity::class.java)
         startActivity(intent)
         user?.let { it1 -> Firebase.messaging.unsubscribeFromTopic(it1.id) }
         val sp = requireActivity().getSharedPreferences("pets-cued", AppCompatActivity.MODE_PRIVATE)

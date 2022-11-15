@@ -1,12 +1,12 @@
 package co.edu.icesi.dev.petscued.utils
 
+import android.content.Intent
 import android.graphics.*
-
+//import androidx.activity.result.ActivityResultC
 
 object ImageUtils {
 
-    @JvmStatic
-    public fun getRoundBitmap(bitmap: Bitmap): Bitmap? {
+    fun getRoundBitmap(bitmap: Bitmap): Bitmap? {
         val output = Bitmap.createBitmap(bitmap.width, bitmap.height, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(output)
         val color = -0xbdbdbe
@@ -19,6 +19,5 @@ object ImageUtils {
         paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
         canvas.drawBitmap(bitmap, rect, rect, paint)
         return output
-
     }
 }

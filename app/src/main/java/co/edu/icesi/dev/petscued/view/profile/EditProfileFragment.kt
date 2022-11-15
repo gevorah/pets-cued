@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -14,8 +15,10 @@ import com.google.firebase.messaging.ktx.messaging
 import co.edu.icesi.dev.petscued.databinding.FragmentEditProfileBinding
 import co.edu.icesi.dev.petscued.databinding.FragmentProfileBinding
 import co.edu.icesi.dev.petscued.model.User
+import co.edu.icesi.dev.petscued.utils.ImageUtils
 import co.edu.icesi.dev.petscued.view.MainActivity
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.fragment_profile.*
 
 class EditProfileFragment : Fragment() {
 
@@ -40,6 +43,8 @@ class EditProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.profilePic.setImageBitmap(ImageUtils.getRoundBitmap(binding.profilePic.drawable.toBitmap()))
     }
 
     private fun changePassword(view: View) {

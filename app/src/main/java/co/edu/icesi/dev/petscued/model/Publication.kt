@@ -3,7 +3,7 @@ package co.edu.icesi.dev.petscued.model
 import java.util.UUID
 
 class Publication(
-    var id: UUID,
+    var id: String,
     var image: String,
     var name: String,
     var breed: String,

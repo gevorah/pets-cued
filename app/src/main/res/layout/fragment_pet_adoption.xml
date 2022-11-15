@@ -20,30 +20,16 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_arrow_back_24" />
 
-        <ImageView
-            android:id="@+id/photoImg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageButton
+            android:id="@+id/photo_img"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
             android:layout_marginTop="20dp"
+            android:src="@drawable/logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <Button
-            android:id="@+id/selectImgBttn"
-            android:layout_width="49dp"
-            android:layout_height="54dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="68dp"
-            android:background="@color/brown_dark"
-            android:backgroundTint="@color/brown_dark"
-            android:text="+"
-            android:textSize="24sp"
-            android:theme="@style/Theme.AppCompat"
-            app:iconTint="@color/brown_dark"
-            app:layout_constraintStart_toEndOf="@+id/photoImg"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:src="@drawable/logo" />
 
         <TextView
             android:id="@+id/textView"
@@ -54,7 +40,7 @@
             android:fontFamily="@font/roboto_regular"
             android:text="Nombre"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/photoImg" />
+            app:layout_constraintTop_toBottomOf="@+id/photo_img" />
 
         <EditText
             android:id="@+id/editTextTextPersonName"

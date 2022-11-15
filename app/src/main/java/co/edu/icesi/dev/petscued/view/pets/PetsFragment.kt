@@ -69,7 +69,7 @@ class PetsFragment : Fragment() {
         this.publicationList = ArrayList()
         publicationList.add(
             Publication(
-                UUID.randomUUID(),
+                UUID.randomUUID().toString(),
                 "path",
                 "Laila",
                 "Mestiza",
@@ -87,7 +87,7 @@ class PetsFragment : Fragment() {
         )
         publicationList.add(
             Publication(
-                UUID.randomUUID(),
+                UUID.randomUUID().toString(),
                 "path",
                 "Cat",
                 "Mestiza",
@@ -105,7 +105,7 @@ class PetsFragment : Fragment() {
         )
         publicationList.add(
             Publication(
-                UUID.randomUUID(),
+                UUID.randomUUID().toString(),
                 "path",
                 "Duck",
                 "Mestiza",

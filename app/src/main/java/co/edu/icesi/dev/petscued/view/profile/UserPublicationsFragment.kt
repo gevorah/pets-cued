@@ -56,7 +56,7 @@ class UserPublicationsFragment : Fragment() {
     private fun addHardcodedElements(view: View) {
         this.publicationList = ArrayList()
         publicationList.add(Publication(
-            UUID.randomUUID(),
+            UUID.randomUUID().toString().toString(),
             "path",
             "Laila",
             "Mestiza",
@@ -71,7 +71,7 @@ class UserPublicationsFragment : Fragment() {
             "3152942393",
             "Sí"))
         publicationList.add(Publication(
-            UUID.randomUUID(),
+            UUID.randomUUID().toString(),
             "path",
             "Cat",
             "Mestiza",
@@ -86,7 +86,7 @@ class UserPublicationsFragment : Fragment() {
             "3152942393",
             "Sí"))
         publicationList.add(Publication(
-            UUID.randomUUID(),
+            UUID.randomUUID().toString(),
             "path",
             "Duck",
             "Mestiza",

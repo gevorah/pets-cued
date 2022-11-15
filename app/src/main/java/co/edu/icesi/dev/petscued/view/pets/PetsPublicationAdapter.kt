@@ -2,9 +2,11 @@ package co.edu.icesi.dev.petscued.view.pets
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.model.Publication
+import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlin.collections.ArrayList
 
 class PetsPublicationAdapter : RecyclerView.Adapter<PetsPublicationView>(){

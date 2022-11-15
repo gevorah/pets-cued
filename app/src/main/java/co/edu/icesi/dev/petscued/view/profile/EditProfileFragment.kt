@@ -1,6 +1,5 @@
 package co.edu.icesi.dev.petscued.view.profile
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,14 +10,8 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.messaging.ktx.messaging
 import co.edu.icesi.dev.petscued.databinding.FragmentEditProfileBinding
-import co.edu.icesi.dev.petscued.databinding.FragmentProfileBinding
-import co.edu.icesi.dev.petscued.model.User
 import co.edu.icesi.dev.petscued.utils.ImageUtils
-import co.edu.icesi.dev.petscued.view.MainActivity
-import com.google.gson.Gson
-import kotlinx.android.synthetic.main.fragment_profile.*
 
 class EditProfileFragment : Fragment() {
 

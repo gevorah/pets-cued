@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.model.Publication
+import co.edu.icesi.dev.petscued.view.pets.LostPetFragment
 import kotlin.collections.ArrayList
 
 class UserPublicationAdapter : RecyclerView.Adapter<UserPublicationView>(),
@@ -47,7 +48,15 @@ class UserPublicationAdapter : RecyclerView.Adapter<UserPublicationView>(),
     }
 
     override fun onEdit(publication: Publication) {
-        TODO("Not yet implemented")
+        if(publication.status==Publication.LOST){
+//            val lostPetFragment = LostPetFragment()
+//            lostPetFragment.requireActivity().supportFragmentManager.beginTransaction()
+//                .replace(R.id.fl_wrapper, lostPetFragment)
+//                .addToBackStack(null)
+//                .commit();
+        }else{
+
+        }
     }
 
     override fun onDelete(publication: Publication) {

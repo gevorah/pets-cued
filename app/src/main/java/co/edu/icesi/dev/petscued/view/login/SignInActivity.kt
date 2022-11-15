@@ -34,12 +34,12 @@ class SignInActivity : AppCompatActivity() {
             Firebase.auth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
                 val fbuser = Firebase.auth.currentUser
                 if(fbuser!!.isEmailVerified){
-                   Firebase.firestore.collection("users").document(fbuser.uid).get().addOnSuccessListener {
-                       val user = it.toObject(User::class.java)
-                       saveUser(user!!)
-                       startActivity(Intent(this, MainActivity::class.java))
-                       finish()
-                   }
+                    Firebase.firestore.collection("users").document(fbuser.uid).get().addOnSuccessListener {
+                        val user = it.toObject(User::class.java)
+                        saveUser(user!!)
+                        startActivity(Intent(this, MainActivity::class.java))
+                        finish()
+                    }
                 } else{
                     Toast.makeText(this, "Su email no ha sido verificado", Toast.LENGTH_LONG).show()
                 }

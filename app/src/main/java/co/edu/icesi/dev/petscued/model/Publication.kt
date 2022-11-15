@@ -1,22 +1,20 @@
 package co.edu.icesi.dev.petscued.model
 
-import java.util.UUID
-
 class Publication(
-    var id: String,
-    var image: String,
-    var name: String,
-    var breed: String,
-    var sex: String,
-    var owner: String,
-    var type: String,
-    var status: String,
-    var location: String,
-    var age: String,
-    var color: String,
-    var description: String,
-    var contactInformation: String,
-    var vaccinated: String
+    var id: String = "",
+    var image: String = "",
+    var name: String = "",
+    var breed: String = "",
+    var sex: String = "",
+    var owner: String = "",
+    var type: String = "",
+    var status: String = "",
+    var location: String = "",
+    var age: String = "",
+    var color: String = "",
+    var description: String = "",
+    var contactInformation: String = "",
+    var vaccinated: String = ""
 ) {
 
     companion object{

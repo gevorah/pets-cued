@@ -1,6 +1,8 @@
 package co.edu.icesi.dev.petscued.view.pets
 
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +11,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.databinding.FragmentPetsBinding
 import co.edu.icesi.dev.petscued.model.Publication
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_pets.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -20,22 +24,23 @@ class PetsFragment : Fragment() {
     private lateinit var petsPublicationAdapter: PetsPublicationAdapter
     private lateinit var publicationList: ArrayList<Publication>
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentPetsBinding.inflate(inflater, container, false)
 
         binding.adoptionPetsButton.setOnClickListener {
+            binding.adoptionPetsButton.setBackgroundColor(Color.GREEN)
+            binding.lostPetsButton.setBackgroundColor(Color.parseColor("#FFCF9E70"))
             filterPublicationListByStatus(Publication.LOST)
         }
         binding.lostPetsButton.setOnClickListener {
+            binding.lostPetsButton.setBackgroundColor(Color.GREEN)
+            binding.adoptionPetsButton.setBackgroundColor(Color.parseColor("#FFCF9E70"))
             filterPublicationListByStatus(Publication.ADOPTION)
         }
         binding.filterPetsButton.setOnClickListener {
             val publicationFilterFragment = PublicationFilterFragment()
             setFragment(publicationFilterFragment)
         }
-
         return binding.root
     }
 
@@ -45,11 +50,12 @@ class PetsFragment : Fragment() {
         this.publicationLayoutManager = GridLayoutManager(context, 2)
         petsPublicationRecyclerView.layoutManager = publicationLayoutManager
         petsPublicationRecyclerView.setHasFixedSize(true)
-
         petsPublicationAdapter = PetsPublicationAdapter()
         petsPublicationRecyclerView.adapter = petsPublicationAdapter
 
-        addHardcodedElements()
+        publicationList = ArrayList()
+        loadPublicationsFromFirebase()
+        binding.lostPetsButton.performClick()
     }
 
     private fun setFragment(fragment: Fragment) = requireActivity().supportFragmentManager.beginTransaction().apply {
@@ -65,8 +71,18 @@ class PetsFragment : Fragment() {
         petsPublicationAdapter.setPublicationList(filteredPublicationList as ArrayList<Publication>)
     }
 
+    private fun loadPublicationsFromFirebase(){
+        Firebase.firestore.collection("publications").get().addOnCompleteListener{ task->
+            for(doc in task.result!!){
+                val publication = doc.toObject(Publication::class.java)
+                publicationList.add(publication)
+                Log.e(">>", publication.name)
+            }
+        }
+        petsPublicationAdapter.setPublicationList(publicationList)
+    }
+
     private fun addHardcodedElements() {
-        this.publicationList = ArrayList()
         publicationList.add(
             Publication(
                 UUID.randomUUID().toString(),
@@ -121,6 +137,5 @@ class PetsFragment : Fragment() {
                 "Sí"
             )
         )
-        petsPublicationAdapter.setPublicationList(publicationList)
     }
 }

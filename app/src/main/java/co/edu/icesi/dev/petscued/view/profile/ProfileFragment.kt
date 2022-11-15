@@ -2,27 +2,24 @@ package co.edu.icesi.dev.petscued.view.profile
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.databinding.FragmentProfileBinding
 import co.edu.icesi.dev.petscued.model.User
 import co.edu.icesi.dev.petscued.utils.ImageUtils
-import co.edu.icesi.dev.petscued.view.MainActivity
 import co.edu.icesi.dev.petscued.view.login.LoginActivity
-import co.edu.icesi.dev.petscued.view.login.SignInActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.ktx.messaging
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_profile.*
 
+@Suppress("UNUSED_EXPRESSION")
 class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
@@ -30,9 +27,8 @@ class ProfileFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View?
-    {
+        savedInstanceState: Bundle?): View?{
+
         binding = FragmentProfileBinding.inflate(inflater, container, false)
 
         binding.publicationsBtn.setOnClickListener {
@@ -47,8 +43,11 @@ class ProfileFragment : Fragment() {
             val helpFragment = HelpFragment()
             setFragment(helpFragment)
         }
-        binding.logOutBtn.setOnClickListener(::logout)
-
+        binding.logOutBtn.setOnClickListener{
+            logout()
+            val intent = Intent(activity, LoginActivity::class.java)
+            startActivity(intent)
+        }
         return binding.root
     }
 
@@ -81,14 +80,14 @@ class ProfileFragment : Fragment() {
     private fun loadUser(): User? {
         val sp = requireActivity().getSharedPreferences("pets-cued", AppCompatActivity.MODE_PRIVATE)
         val json = sp.getString("user", "NO_USER")
-        if(json == "NO_USER"){
-            return null
+        return if(json == "NO_USER"){
+            null
         }else{
-            return Gson().fromJson(json, User::class.java)
+            Gson().fromJson(json, User::class.java)
         }
     }
 
-    private fun logout(view: View){
+    private fun logout(){
         activity?.finish()
         val user = loadUser()
         val intent = Intent(context, LoginActivity::class.java)

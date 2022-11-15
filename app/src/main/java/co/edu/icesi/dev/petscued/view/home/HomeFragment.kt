@@ -1,6 +1,7 @@
 package co.edu.icesi.dev.petscued.view.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,8 @@ import co.edu.icesi.dev.petscued.databinding.FragmentHomeBinding
 import co.edu.icesi.dev.petscued.model.Publication
 import co.edu.icesi.dev.petscued.view.pets.LostPetFragment
 import co.edu.icesi.dev.petscued.view.pets.PetAdoptionFragment
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -24,7 +27,7 @@ class HomeFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         binding.lostImageButton.setOnClickListener {
@@ -35,7 +38,6 @@ class HomeFragment : Fragment() {
             val petAdoptionFragment = PetAdoptionFragment()
             setFragment(petAdoptionFragment)
         }
-
         return binding.root
     }
 
@@ -45,11 +47,22 @@ class HomeFragment : Fragment() {
         this.publicationLayoutManager = GridLayoutManager(context, 2)
         homePublicationRecyclerView.layoutManager = publicationLayoutManager
         homePublicationRecyclerView.setHasFixedSize(true)
-
         homePublicationAdapter = HomePublicationAdapter()
         homePublicationRecyclerView.adapter = homePublicationAdapter
 
-        addHardcodedElements()
+        publicationList = ArrayList()
+        loadPublicationsFromFirebase()
+    }
+
+    private fun loadPublicationsFromFirebase(){
+        Firebase.firestore.collection("publications").get().addOnCompleteListener{ task->
+            for(doc in task.result!!){
+                val publication = doc.toObject(Publication::class.java)
+                publicationList.add(publication)
+                Log.e(">>", publication.name)
+            }
+        }
+        homePublicationAdapter.setPublicationList(publicationList)
     }
 
     private fun setFragment(fragment: Fragment) =
@@ -60,7 +73,6 @@ class HomeFragment : Fragment() {
         }
 
     private fun addHardcodedElements() {
-        this.publicationList = ArrayList()
         publicationList.add(
             Publication(
                 UUID.randomUUID().toString(),
@@ -115,6 +127,5 @@ class HomeFragment : Fragment() {
                 "Sí"
             )
         )
-        homePublicationAdapter.setPublicationList(publicationList)
     }
 }

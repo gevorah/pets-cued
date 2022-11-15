@@ -1,16 +1,11 @@
 package co.edu.icesi.dev.petscued.view
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.model.User
-import co.edu.icesi.dev.petscued.utils.ImageUtils
 import co.edu.icesi.dev.petscued.view.home.HomeFragment
-import co.edu.icesi.dev.petscued.view.login.LoginActivity
 import co.edu.icesi.dev.petscued.view.pets.PetsFragment
 import co.edu.icesi.dev.petscued.view.profile.ProfileFragment
 import com.google.firebase.auth.ktx.auth
@@ -19,9 +14,8 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import android.Manifest
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
+import android.content.Intent
+import co.edu.icesi.dev.petscued.view.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -94,5 +88,4 @@ class MainActivity : AppCompatActivity() {
         addToBackStack(null)
         commit()
     }
-
 }

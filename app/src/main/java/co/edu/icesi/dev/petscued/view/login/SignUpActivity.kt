@@ -26,7 +26,7 @@ class SignUpActivity : AppCompatActivity() {
             finish()
         }
 
-       binding.singUpBtn.setOnClickListener(::register)
+        binding.singUpBtn.setOnClickListener(::register)
 
     }
 
@@ -34,11 +34,11 @@ class SignUpActivity : AppCompatActivity() {
         Firebase.auth.createUserWithEmailAndPassword(
             binding.emailFld.text.toString(),
             binding.passwordFld.text.toString()
-            ).addOnSuccessListener {
+        ).addOnSuccessListener {
 
             val id = Firebase.auth.currentUser?.uid
-                val user = User(id!!, binding.nameFld.text.toString(),
-                    binding.emailFld.text.toString())
+            val user = User(id!!, binding.nameFld.text.toString(),
+                binding.emailFld.text.toString())
 
             Firebase.firestore.collection("users").document(id).set(user).addOnSuccessListener{
                 sendVerificationEmail()

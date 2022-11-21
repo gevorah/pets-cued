@@ -28,12 +28,12 @@ class PetsFragment : Fragment() {
         binding.adoptionPetsButton.setOnClickListener {
             binding.adoptionPetsButton.setBackgroundColor(Color.GREEN)
             binding.lostPetsButton.setBackgroundColor(Color.parseColor("#FFCF9E70"))
-            filterPublicationListByStatus(Publication.LOST)
+            filterPublicationListByStatus(Publication.ADOPTION)
         }
         binding.lostPetsButton.setOnClickListener {
             binding.lostPetsButton.setBackgroundColor(Color.GREEN)
             binding.adoptionPetsButton.setBackgroundColor(Color.parseColor("#FFCF9E70"))
-            filterPublicationListByStatus(Publication.ADOPTION)
+            filterPublicationListByStatus(Publication.LOST)
         }
         binding.filterPetsButton.setOnClickListener {
             val publicationFilterFragment = PublicationFilterFragment()

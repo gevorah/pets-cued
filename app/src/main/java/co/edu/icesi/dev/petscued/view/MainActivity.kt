@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity() {
             finish()
             return
         } else {
-
             val homeFragment = HomeFragment()
             val petsFragment = PetsFragment()
             val profileFragment = ProfileFragment()

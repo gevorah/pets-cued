@@ -1,9 +1,12 @@
 package co.edu.icesi.dev.petscued.view.pets
 
+import android.content.Intent
+import android.net.Uri
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.model.Publication

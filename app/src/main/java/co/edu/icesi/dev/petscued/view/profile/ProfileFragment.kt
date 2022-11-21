@@ -13,6 +13,8 @@ import co.edu.icesi.dev.petscued.databinding.FragmentProfileBinding
 import co.edu.icesi.dev.petscued.model.User
 import co.edu.icesi.dev.petscued.utils.ImageUtils
 import co.edu.icesi.dev.petscued.view.login.LoginActivity
+import co.edu.icesi.dev.petscued.view.pets.LostPetFragment
+import co.edu.icesi.dev.petscued.view.pets.PetAdoptionFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.ktx.messaging

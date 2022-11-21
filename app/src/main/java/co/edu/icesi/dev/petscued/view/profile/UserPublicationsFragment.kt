@@ -8,9 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.databinding.FragmentUserPublicationsBinding
 import co.edu.icesi.dev.petscued.model.Publication
 import co.edu.icesi.dev.petscued.model.User
+import co.edu.icesi.dev.petscued.view.pets.LostPetFragment
+import co.edu.icesi.dev.petscued.view.pets.PetAdoptionFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -24,6 +27,7 @@ class UserPublicationsFragment() : Fragment() {
     private lateinit var publicationLayoutManager: LinearLayoutManager
     private lateinit var userPublicationAdapter: UserPublicationAdapter
     private lateinit var userPublicationList: ArrayList<Publication>
+    private var isLostButtonGreen: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -33,14 +37,22 @@ class UserPublicationsFragment() : Fragment() {
             binding.lostPublicationButton.setBackgroundColor(Color.GREEN)
             binding.adoptionPublicationButton.setBackgroundColor(Color.parseColor("#FFCF9E70"))
             filterPublicationListByStatus(Publication.LOST)
+            isLostButtonGreen = true
         }
         binding.adoptionPublicationButton.setOnClickListener {
             binding.adoptionPublicationButton.setBackgroundColor(Color.GREEN)
             binding.lostPublicationButton.setBackgroundColor(Color.parseColor("#FFCF9E70"))
             filterPublicationListByStatus(Publication.ADOPTION)
+            isLostButtonGreen = false
         }
         binding.addFloatingActionButton.setOnClickListener {
-
+            if(isLostButtonGreen){
+                val lostPetFragment = LostPetFragment()
+                setFragment(lostPetFragment)
+            }else {
+                val petAdoptionFragment = PetAdoptionFragment()
+                setFragment(petAdoptionFragment)
+            }
         }
         return binding.root
     }
@@ -76,6 +88,12 @@ class UserPublicationsFragment() : Fragment() {
                 }
             }
         userPublicationAdapter.setPublicationList(userPublicationList)
+    }
+
+    private fun setFragment(fragment: Fragment) = requireActivity().supportFragmentManager.beginTransaction().apply {
+        replace(R.id.fl_wrapper, fragment)
+        addToBackStack(null)
+        commit()
     }
 
     private fun addHardcodedElements() {

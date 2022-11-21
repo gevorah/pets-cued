@@ -23,22 +23,19 @@ class EditProfileFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentEditProfileBinding.inflate(inflater, container, false)
 
         binding.saveBtn.setOnClickListener(::changePassword)
         //android:afterTextChanged="@{(edtitable)->LoginVM.afterUserNameChange(edtitable)}"
         //public void afterUserNameChange(CharSequence s)
         //{ Log.i("truc", s.toString()) }
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.profilePic.setImageBitmap(ImageUtils.getRoundBitmap(binding.profilePic.drawable.toBitmap()))
-
     }
 
     private fun changePassword(view: View) {

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -41,13 +42,14 @@ class PetAdoptionFragment : Fragment() {
             intent.type = "image/*"
             galleryLauncher.launch(intent)
         }
-
         binding.adoptionPetBttn.setOnClickListener {
             publish()
             val userPublicationsFragment = UserPublicationsFragment()
             setFragment(userPublicationsFragment)
         }
-
+        binding.backPetAdoptionButton.setOnClickListener{
+            activity?.supportFragmentManager?.popBackStack()
+        }
         return binding.root
     }
 
@@ -71,6 +73,30 @@ class PetAdoptionFragment : Fragment() {
     }
 
     private fun publish() {
+//        if(!checkIfNotNullOrBlankOrEmpty(uri!!.toString(), "imagen"))
+//            return
+//        else if(!checkIfNotNullOrBlankOrEmpty(binding.editTextPetName.text.toString(), "Nombre"))
+//            return
+//        else if(!checkIfNotNullOrBlankOrEmpty(binding.editTextPetBreed.text.toString(), "Raza"))
+//            return
+//        else if(!checkIfNotNullOrBlankOrEmpty(sex, "Sexo"))
+//            return
+//        else if(!checkIfNotNullOrBlankOrEmpty(owner, "Fundación"))
+//            return
+//        else if(!checkIfNotNullOrBlankOrEmpty(type, "Tipo"))
+//            return
+//        else if(!checkIfNotNullOrBlankOrEmpty(location, "Dirección"))
+//            return
+//        else if(!checkIfNotNullOrBlankOrEmpty(age, "Edad"))
+//            return
+//        else if(!checkIfNotNullOrBlankOrEmpty(color, "Color"))
+//            return
+//        else if(!checkIfNotNullOrBlankOrEmpty(description, "Descripción"))
+//            return
+//        else if(!checkIfNotNullOrBlankOrEmpty(contactInformation, "Teléfono"))
+//            return
+//        else if(!checkIfNotNullOrBlankOrEmpty(vaccinated, "Vacunado"))
+//            return
         val image = uri!!.toString() // OK
         val name = binding.editTextPetName.text.toString()
         val breed = binding.editTextPetBreed.text.toString()
@@ -102,12 +128,19 @@ class PetAdoptionFragment : Fragment() {
             vaccinated,
             Firebase.auth.currentUser!!.uid
         )
-
         Firebase.storage.reference.child("publications").child(UUID.randomUUID().toString()).putFile(uri!!)
         Firebase.firestore.collection("publications").document(publication.id).set(publication)
     }
 
-    fun typeRadioGroup(checkedId: Int): String {
+    private fun checkIfNotNullOrBlankOrEmpty(field: String, fieldType: String): Boolean {
+        if(!field!!.toString().isNullOrBlank() && !field!!.toString().isNullOrEmpty()){
+            return true
+        }
+        Toast.makeText(this.context, "Complete el campo: $fieldType", Toast.LENGTH_SHORT).show()
+        return false
+    }
+
+    private fun typeRadioGroup(checkedId: Int): String {
         when(checkedId) {
             binding.radioButton.id -> {
                 return binding.radioButton.text.toString()
@@ -140,7 +173,7 @@ class PetAdoptionFragment : Fragment() {
         return ""
     }*/
 
-    fun vaccineRadioGroup(checkedId: Int): String {
+    private fun vaccineRadioGroup(checkedId: Int): String {
         when(checkedId) {
             binding.radioButton6.id -> {
                 return binding.radioButton6.text.toString()

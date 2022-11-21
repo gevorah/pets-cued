@@ -27,7 +27,7 @@ class LostPetFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentLostPetBinding.inflate(inflater, container, false)
 
         val galleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult(), ::onGalleryResult)
@@ -42,6 +42,9 @@ class LostPetFragment : Fragment() {
             publish()
             val userPublicationsFragment = UserPublicationsFragment()
             setFragment(userPublicationsFragment)
+        }
+        binding.backLostPetButton.setOnClickListener{
+            activity?.supportFragmentManager?.popBackStack()
         }
 
         return binding.root

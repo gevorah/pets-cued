@@ -2,12 +2,12 @@ package co.edu.icesi.dev.petscued.view.pets
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.model.Publication
-import kotlinx.android.synthetic.main.fragment_home.view.*
-import kotlin.collections.ArrayList
+import com.bumptech.glide.Glide
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class PetsPublicationAdapter : RecyclerView.Adapter<PetsPublicationView>(){
 
@@ -27,7 +27,9 @@ class PetsPublicationAdapter : RecyclerView.Adapter<PetsPublicationView>(){
     override fun onBindViewHolder(holder: PetsPublicationView, position: Int) {
         val publication: Publication = publicationList[position]
         holder.publication = publication
-//        holder.petImageView
+        Firebase.storage.reference.child("publications").child("b5e34d5c-08b6-4165-ae5c-8bc3174efa3e").downloadUrl.addOnSuccessListener {
+            Glide.with(holder.petImageView).load(it).into(holder.petImageView)
+        }
         holder.nameTextView.text = publication.name
         holder.breedTextView.text = publication.breed
         holder.ownerTextView.text = publication.owner

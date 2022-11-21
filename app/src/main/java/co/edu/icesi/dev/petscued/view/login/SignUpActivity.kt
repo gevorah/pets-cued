@@ -25,31 +25,45 @@ class SignUpActivity : AppCompatActivity() {
         back_btn.setOnClickListener {
             finish()
         }
-
         binding.singUpBtn.setOnClickListener(::register)
-
     }
 
     private fun register(view: View) {
-        Firebase.auth.createUserWithEmailAndPassword(
-            binding.emailFld.text.toString(),
-            binding.passwordFld.text.toString()
-        ).addOnSuccessListener {
+        if(!checkIfNullOrBlankOrEmpty(binding.emailFld.text.toString()) &&
+            !checkIfNullOrBlankOrEmpty(binding.passwordFld.text.toString()) &&
+            !checkIfNullOrBlankOrEmpty(binding.nameFld.text.toString())) {
 
-            val id = Firebase.auth.currentUser?.uid
-            val user = User(id!!, binding.nameFld.text.toString(),
-                binding.emailFld.text.toString())
+            Firebase.auth.createUserWithEmailAndPassword(
+                binding.emailFld.text.toString(),
+                binding.passwordFld.text.toString()
+            ).addOnSuccessListener {
 
-            Firebase.firestore.collection("users").document(id).set(user).addOnSuccessListener{
-                sendVerificationEmail()
-                finish()
+                val id = Firebase.auth.currentUser?.uid
+                val user = User(
+                    id!!, binding.nameFld.text.toString(),
+                    binding.emailFld.text.toString()
+                )
+
+                Firebase.firestore.collection("users").document(id).set(user)
+                    .addOnSuccessListener {
+                        sendVerificationEmail()
+                        finish()
+                    }
+            }.addOnFailureListener {
+                Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+            }.addOnSuccessListener {
+                val intent = Intent(this, SignInActivity::class.java)
+                startActivity(intent)
             }
-        }.addOnFailureListener{
-            Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
-        }.addOnSuccessListener {
-            val intent = Intent(this, SignInActivity::class.java )
-            startActivity(intent)
+        }else
+            Toast.makeText(this, "Complete todos los campos", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun checkIfNullOrBlankOrEmpty(field: String): Boolean {
+        if(field.isBlank() && field.isEmpty()){
+            return true
         }
+        return false
     }
 
     private fun sendVerificationEmail() {

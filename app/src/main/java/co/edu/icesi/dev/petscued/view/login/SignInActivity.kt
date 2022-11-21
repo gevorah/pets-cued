@@ -29,43 +29,54 @@ class SignInActivity : AppCompatActivity() {
         }
 
         binding.signInBtn.setOnClickListener{
-            val email = binding.emailFld.text.toString()
-            val password = binding.passwordFld.text.toString()
-            Firebase.auth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
-                val fbuser = Firebase.auth.currentUser
-                if(fbuser!!.isEmailVerified){
-                    Firebase.firestore.collection("users").document(fbuser.uid).get().addOnSuccessListener {
-                        val user = it.toObject(User::class.java)
-                        saveUser(user!!)
-                        val intent = Intent(this, MainActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        startActivity(intent)
-                        finish()
-                    }
-                } else{
-                    Toast.makeText(this, "Su email no ha sido verificado", Toast.LENGTH_LONG).show()
-                }
+            if(!checkIfNullOrBlankOrEmpty(binding.emailFld.text.toString()) &&
+                !checkIfNullOrBlankOrEmpty(binding.passwordFld.text.toString())){
 
-            }.addOnFailureListener {
-                Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                val email: String = binding.emailFld.text.toString()
+                val password: String = binding.passwordFld.text.toString()
+                Firebase.auth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
+                    val fbuser = Firebase.auth.currentUser
+                    if(fbuser!!.isEmailVerified){
+                        Firebase.firestore.collection("users").document(fbuser.uid).get().addOnSuccessListener {
+                            val user = it.toObject(User::class.java)
+                            saveUser(user!!)
+                            val intent = Intent(this, MainActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(intent)
+                            finish()
+                        }
+                    } else{
+                        Toast.makeText(this, "Su email no ha sido verificado", Toast.LENGTH_LONG).show()
+                    }
+                }.addOnFailureListener {
+                    Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                }
+            }else{
+                Toast.makeText(this, "Complete todos los campos", Toast.LENGTH_LONG).show()
             }
         }
 
         binding.lostPasswordTxt.setOnClickListener {
-            if(binding.emailFld?.text?.isNullOrBlank() != true && binding.emailFld?.text?.isNullOrEmpty() != true){
-                Firebase.auth.sendPasswordResetEmail(binding.emailFld?.text.toString())
+            if(binding.emailFld.text?.isBlank() != true && binding.emailFld.text?.isEmpty() != true){
+                Firebase.auth.sendPasswordResetEmail(binding.emailFld.text.toString())
                     .addOnSuccessListener {
-                        Toast.makeText(this, "Revise su correo "+binding.emailFld?.text.toString(), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Revise su correo "+binding.emailFld.text.toString(), Toast.LENGTH_SHORT).show()
                     }.addOnFailureListener {
                         Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                     }
-            }else{
+            }else
                 Toast.makeText(this, "Escriba su correo para recuperar su contraseña", Toast.LENGTH_SHORT).show()
-            }
         }
     }
 
-    fun saveUser ( user: User){
+    private fun checkIfNullOrBlankOrEmpty(field: String): Boolean {
+        if(field.isBlank() && field.isEmpty()){
+            return true
+        }
+        return false
+    }
+
+    private fun saveUser (user: User){
         val sp = getSharedPreferences("pets-cued", MODE_PRIVATE)
         val json = Gson().toJson(user)
         sp.edit().putString("user", json).apply()

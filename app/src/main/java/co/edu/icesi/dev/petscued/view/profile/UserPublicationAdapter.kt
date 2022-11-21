@@ -54,7 +54,7 @@ class UserPublicationAdapter : RecyclerView.Adapter<UserPublicationView>(),
 //                .replace(R.id.fl_wrapper, lostPetFragment)
 //                .addToBackStack(null)
 //                .commit();
-        }else{
+        }else {
 
         }
     }

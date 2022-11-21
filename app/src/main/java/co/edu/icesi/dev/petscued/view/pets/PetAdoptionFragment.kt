@@ -1,6 +1,5 @@
 package co.edu.icesi.dev.petscued.view.pets
 
-import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.net.Uri
@@ -14,9 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.databinding.FragmentPetAdoptionBinding
-import co.edu.icesi.dev.petscued.databinding.FragmentProfileBinding
 import co.edu.icesi.dev.petscued.model.Publication
-import co.edu.icesi.dev.petscued.view.MainActivity
 import co.edu.icesi.dev.petscued.view.profile.UserPublicationsFragment
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -33,12 +30,12 @@ class PetAdoptionFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentPetAdoptionBinding.inflate(inflater, container, false)
 
         galleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult(), ::onGalleryResult)
 
-        binding.photoImg.setOnClickListener {
+        binding.imageButtonPet.setOnClickListener {
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "image/*"
             galleryLauncher.launch(intent)
@@ -67,25 +64,25 @@ class PetAdoptionFragment : Fragment() {
         if(result.resultCode == RESULT_OK) {
             uri = result.data?.data
             uri?.let {
-                binding.photoImg.setImageURI(uri)
+                binding.imageButtonPet.setImageURI(uri)
             }
         }
     }
 
     private fun publish() {
         val image = uri!!.toString() // OK
-        val name = binding.editTextTextPersonName.text.toString()
-        val breed = binding.editTextTextPersonName2.text.toString()
+        val name = binding.editTextPetName.text.toString()
+        val breed = binding.editTextPetBreed.text.toString()
         val sex = "" //sexRadioGroup(binding.radioGroup.checkedRadioButtonId)
-        val owner = binding.editTextTextPersonName4.text.toString()
-        val type = typeRadioGroup(binding.radioGroup.checkedRadioButtonId) // OK
+        val owner = binding.editTextPetOwner.text.toString()
+        val type = typeRadioGroup(binding.radioGroupType.checkedRadioButtonId) // OK
         val status = Publication.ADOPTION // OK
-        val location = binding.editTextTextPersonName7.text.toString()
-        val age = binding.editTextTextPersonName3.text.toString()
-        val color = binding.editTextTextPersonName3.text.toString()
+        val location = binding.editTextAddress.text.toString()
+        val age = binding.editTextPetAge.text.toString()
+        val color = binding.editTextPetColor.text.toString()
         val description = "" //?
-        val contactInformation = binding.editTextTextPersonName.text.toString()
-        val vaccinated = vaccineRadioGroup(binding.radioGroup2.checkedRadioButtonId) // OK
+        val contactInformation = binding.editTextPhoneNumber.text.toString()
+        val vaccinated = vaccineRadioGroup(binding.radioGroupVaccinated.checkedRadioButtonId) // OK
 
         val publication = Publication(
             UUID.randomUUID().toString(),

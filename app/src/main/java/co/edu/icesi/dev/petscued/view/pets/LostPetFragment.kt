@@ -17,7 +17,7 @@ import co.edu.icesi.dev.petscued.view.profile.UserPublicationsFragment
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import java.util.UUID
+import java.util.*
 
 class LostPetFragment : Fragment() {
 
@@ -31,7 +31,7 @@ class LostPetFragment : Fragment() {
 
         val galleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult(), ::onGalleryResult)
 
-        binding.photoImg.setOnClickListener {
+        binding.imageButtonPet.setOnClickListener {
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "image/*"
             galleryLauncher.launch(intent)
@@ -61,25 +61,24 @@ class LostPetFragment : Fragment() {
         if(result.resultCode == Activity.RESULT_OK) {
             uri = result.data?.data
             uri?.let {
-                binding.photoImg.setImageURI(uri)
+                binding.imageButtonPet.setImageURI(uri)
             }
         }
     }
 
     private fun publish() {
         val image = uri!!.toString() // OK
-        val name = binding.editTextTextPersonName.text.toString()
-        val breed = binding.editTextTextPersonName2.text.toString()
-        val sex = sexRadioGroup(binding.radioGroup.checkedRadioButtonId) // OK
-        val owner = binding.editTextTextPersonName4.text.toString()
-        val type = typeRadioGroup(binding.radioGroup.checkedRadioButtonId) // OK
+        val name = binding.editTextPetName.text.toString()
+        val breed = binding.editTextPetBreed.text.toString()
+        val sex = sexRadioGroup(binding.radioGroupSex.checkedRadioButtonId) // OK
+        val owner = binding.editTextPetOwner.text.toString()
+        val type = typeRadioGroup(binding.radioGroupType.checkedRadioButtonId) // OK
         val status = Publication.LOST // OK
-        val location = binding.editTextTextPersonName7.text.toString()
-        val age = binding.editTextTextPersonName3.text.toString()
-        val color = binding.editTextTextPersonName3.text.toString()
-        val description = binding.editTextTextMultiLine.text.toString() // OK
-        val contactInformation = binding.editTextTextPersonName.text.toString()
-        val vaccinated = binding.editTextTextPersonName.text.toString()
+        val location = binding.editTextAddress.text.toString()
+        val age = binding.editTextPetAge.text.toString()
+        val color = binding.editTextPetColor.text.toString()
+        val description = binding.editTextMultiLineDescription.text.toString() // OK
+        val contactInformation = binding.editTextPhoneNumber.text.toString()
 
         val publication = Publication(
             UUID.randomUUID().toString(),
@@ -95,7 +94,7 @@ class LostPetFragment : Fragment() {
             color,
             description,
             contactInformation,
-            vaccinated
+            null
         )
 
         Firebase.storage.reference.child("publications").child(UUID.randomUUID().toString()).putFile(uri!!)

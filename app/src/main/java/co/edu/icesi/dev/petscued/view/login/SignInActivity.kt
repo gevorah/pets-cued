@@ -50,12 +50,16 @@ class SignInActivity : AppCompatActivity() {
         }
 
         binding.lostPasswordTxt.setOnClickListener {
-            Firebase.auth.sendPasswordResetEmail(binding.emailFld?.text.toString())
-                .addOnSuccessListener {
-                    Toast.makeText(this, "Revise su correo "+binding.emailFld?.text.toString(), Toast.LENGTH_SHORT).show()
-                }.addOnFailureListener {
-                    Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
-                }
+            if(binding.emailFld?.text?.isNullOrBlank() != true && binding.emailFld?.text?.isNullOrEmpty() != true){
+                Firebase.auth.sendPasswordResetEmail(binding.emailFld?.text.toString())
+                    .addOnSuccessListener {
+                        Toast.makeText(this, "Revise su correo "+binding.emailFld?.text.toString(), Toast.LENGTH_SHORT).show()
+                    }.addOnFailureListener {
+                        Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                    }
+            }else{
+                Toast.makeText(this, "Escriba su correo para recuperar su contraseña", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

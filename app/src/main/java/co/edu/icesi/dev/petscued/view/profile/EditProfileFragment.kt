@@ -38,6 +38,7 @@ class EditProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.profilePic.setImageBitmap(ImageUtils.getRoundBitmap(binding.profilePic.drawable.toBitmap()))
+
     }
 
     private fun changePassword(view: View) {

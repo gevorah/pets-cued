@@ -14,6 +14,7 @@ import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.databinding.FragmentLostPetBinding
 import co.edu.icesi.dev.petscued.model.Publication
 import co.edu.icesi.dev.petscued.view.profile.UserPublicationsFragment
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -94,7 +95,8 @@ class LostPetFragment : Fragment() {
             color,
             description,
             contactInformation,
-            null
+            null,
+            Firebase.auth.currentUser!!.uid
         )
 
         Firebase.storage.reference.child("publications").child(UUID.randomUUID().toString()).putFile(uri!!)

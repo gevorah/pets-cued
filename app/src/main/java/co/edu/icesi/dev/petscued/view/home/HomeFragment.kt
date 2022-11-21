@@ -54,9 +54,9 @@ class HomeFragment : Fragment() {
         loadPublicationsFromFirebase()
     }
 
-    private fun loadPublicationsFromFirebase(){
-        Firebase.firestore.collection("publications").get().addOnCompleteListener{ task->
-            for(doc in task.result!!){
+    private fun loadPublicationsFromFirebase() {
+        Firebase.firestore.collection("publications").get().addOnCompleteListener { task ->
+            for (doc in task.result!!) {
                 val publication = doc.toObject(Publication::class.java)
                 publicationList.add(publication)
                 Log.e(">>", publication.name)
@@ -71,61 +71,4 @@ class HomeFragment : Fragment() {
             addToBackStack(null)
             commit()
         }
-
-    private fun addHardcodedElements() {
-        publicationList.add(
-            Publication(
-                UUID.randomUUID().toString(),
-                "path",
-                "Laila",
-                "Mestiza",
-                "Male",
-                "José Castro",
-                "dog",
-                "Perdido",
-                "Cali, Santa Mónica",
-                "7 años",
-                "cafe",
-                "sin detalles adiciones.",
-                "3152942393",
-                "Sí"
-            )
-        )
-        publicationList.add(
-            Publication(
-                UUID.randomUUID().toString(),
-                "path",
-                "Cat",
-                "Mestiza",
-                "Male",
-                "José Castro",
-                "dog",
-                "Adopción",
-                "Cali, Santa Mónica",
-                "7 años",
-                "cafe",
-                "sin detalles adiciones.",
-                "3152942393",
-                "Sí"
-            )
-        )
-        publicationList.add(
-            Publication(
-                UUID.randomUUID().toString(),
-                "path",
-                "Duck",
-                "Mestiza",
-                "Male",
-                "José Castro",
-                "dog",
-                "Adopción",
-                "Cali, Santa Mónica",
-                "7 años",
-                "cafe",
-                "sin detalles adiciones.",
-                "3152942393",
-                "Sí"
-            )
-        )
-    }
 }

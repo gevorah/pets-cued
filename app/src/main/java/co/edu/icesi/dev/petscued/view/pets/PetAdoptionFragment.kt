@@ -15,6 +15,7 @@ import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.databinding.FragmentPetAdoptionBinding
 import co.edu.icesi.dev.petscued.model.Publication
 import co.edu.icesi.dev.petscued.view.profile.UserPublicationsFragment
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -98,7 +99,8 @@ class PetAdoptionFragment : Fragment() {
             color,
             description,
             contactInformation,
-            vaccinated
+            vaccinated,
+            Firebase.auth.currentUser!!.uid
         )
 
         Firebase.storage.reference.child("publications").child(UUID.randomUUID().toString()).putFile(uri!!)

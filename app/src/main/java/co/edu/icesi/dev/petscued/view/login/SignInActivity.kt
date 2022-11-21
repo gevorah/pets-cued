@@ -37,7 +37,9 @@ class SignInActivity : AppCompatActivity() {
                     Firebase.firestore.collection("users").document(fbuser.uid).get().addOnSuccessListener {
                         val user = it.toObject(User::class.java)
                         saveUser(user!!)
-                        startActivity(Intent(this, MainActivity::class.java))
+                        val intent = Intent(this, MainActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
                         finish()
                     }
                 } else{

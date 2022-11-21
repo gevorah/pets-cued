@@ -14,7 +14,6 @@ import co.edu.icesi.dev.petscued.model.Publication
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_pets.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 class PetsFragment : Fragment() {
@@ -80,62 +79,5 @@ class PetsFragment : Fragment() {
             }
         }
         petsPublicationAdapter.setPublicationList(publicationList)
-    }
-
-    private fun addHardcodedElements() {
-        publicationList.add(
-            Publication(
-                UUID.randomUUID().toString(),
-                "path",
-                "Laila",
-                "Mestiza",
-                "Male",
-                "José Castro",
-                "dog",
-                "Perdido",
-                "Cali, Santa Mónica",
-                "7 años",
-                "cafe",
-                "sin detalles adiciones.",
-                "3152942393",
-                "Sí"
-            )
-        )
-        publicationList.add(
-            Publication(
-                UUID.randomUUID().toString(),
-                "path",
-                "Cat",
-                "Mestiza",
-                "Male",
-                "José Castro",
-                "dog",
-                "Adopción",
-                "Cali, Santa Mónica",
-                "7 años",
-                "cafe",
-                "sin detalles adiciones.",
-                "3152942393",
-                "Sí"
-            )
-        )
-        publicationList.add(
-            Publication(
-                UUID.randomUUID().toString(),
-                "path",
-                "Duck",
-                "Mestiza",
-                "Male",
-                "José Castro",
-                "dog",
-                "Adopción",
-                "Cali, Santa Mónica",
-                "7 años",
-                "cafe",
-                "sin detalles adiciones.",
-                "3152942393",
-                "Sí"
-            )
-        )
     }
 }

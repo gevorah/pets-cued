@@ -15,7 +15,7 @@ class Publication(
     var description: String = "",
     var contactInformation: String = "",
     var vaccinated: String = "",
-    var userId: String
+    var userId: String = ""
 ) {
 
     companion object{

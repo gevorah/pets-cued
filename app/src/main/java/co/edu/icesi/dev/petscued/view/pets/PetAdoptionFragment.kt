@@ -97,7 +97,7 @@ class PetAdoptionFragment : Fragment() {
 //            return
 //        else if(!checkIfNotNullOrBlankOrEmpty(vaccinated, "Vacunado"))
 //            return
-        val image = uri!!.toString() // OK
+        val image = UUID.randomUUID().toString() // OK
         val name = binding.editTextPetName.text.toString()
         val breed = binding.editTextPetBreed.text.toString()
         val sex = "" //sexRadioGroup(binding.radioGroup.checkedRadioButtonId)
@@ -128,7 +128,7 @@ class PetAdoptionFragment : Fragment() {
             vaccinated,
             Firebase.auth.currentUser!!.uid
         )
-        Firebase.storage.reference.child("publications").child(UUID.randomUUID().toString()).putFile(uri!!)
+        Firebase.storage.reference.child("publications").child(image).putFile(uri!!)
         Firebase.firestore.collection("publications").document(publication.id).set(publication)
     }
 

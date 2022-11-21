@@ -27,7 +27,7 @@ class PetsPublicationAdapter : RecyclerView.Adapter<PetsPublicationView>(){
     override fun onBindViewHolder(holder: PetsPublicationView, position: Int) {
         val publication: Publication = publicationList[position]
         holder.publication = publication
-        Firebase.storage.reference.child("publications").child("b5e34d5c-08b6-4165-ae5c-8bc3174efa3e").downloadUrl.addOnSuccessListener {
+        Firebase.storage.reference.child("publications").child(publication.image).downloadUrl.addOnSuccessListener {
             Glide.with(holder.petImageView).load(it).into(holder.petImageView)
         }
         holder.nameTextView.text = publication.name

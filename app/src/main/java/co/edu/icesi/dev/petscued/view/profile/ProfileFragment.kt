@@ -2,19 +2,17 @@ package co.edu.icesi.dev.petscued.view.profile
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
+import androidx.fragment.app.Fragment
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.databinding.FragmentProfileBinding
 import co.edu.icesi.dev.petscued.model.User
 import co.edu.icesi.dev.petscued.utils.ImageUtils
 import co.edu.icesi.dev.petscued.view.login.LoginActivity
-import co.edu.icesi.dev.petscued.view.pets.LostPetFragment
-import co.edu.icesi.dev.petscued.view.pets.PetAdoptionFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.ktx.messaging

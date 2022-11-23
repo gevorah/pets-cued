@@ -2,7 +2,6 @@ package co.edu.icesi.dev.petscued.view.pets
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,20 +19,19 @@ class PetsFragment : Fragment() {
     private lateinit var binding: FragmentPetsBinding
     private lateinit var publicationLayoutManager: GridLayoutManager
     private lateinit var petsPublicationAdapter: PetsPublicationAdapter
-    private lateinit var publicationList: ArrayList<Publication>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentPetsBinding.inflate(inflater, container, false)
 
         binding.adoptionPetsButton.setOnClickListener {
+            fetchPublicationsByStatus(Publication.ADOPTION)
             binding.adoptionPetsButton.setBackgroundColor(Color.GREEN)
             binding.lostPetsButton.setBackgroundColor(Color.parseColor("#FFCF9E70"))
-            filterPublicationListByStatus(Publication.ADOPTION)
         }
         binding.lostPetsButton.setOnClickListener {
+            fetchPublicationsByStatus(Publication.LOST)
             binding.lostPetsButton.setBackgroundColor(Color.GREEN)
             binding.adoptionPetsButton.setBackgroundColor(Color.parseColor("#FFCF9E70"))
-            filterPublicationListByStatus(Publication.LOST)
         }
         binding.filterPetsButton.setOnClickListener {
             val publicationFilterFragment = PublicationFilterFragment()
@@ -49,10 +47,8 @@ class PetsFragment : Fragment() {
         petsPublicationRecyclerView.layoutManager = publicationLayoutManager
         petsPublicationRecyclerView.setHasFixedSize(true)
         petsPublicationAdapter = PetsPublicationAdapter()
-        petsPublicationRecyclerView.adapter = petsPublicationAdapter
+        petsPublicationRecyclerView.adapter = this.petsPublicationAdapter
 
-        publicationList = ArrayList()
-        loadPublicationsFromFirebase()
         binding.lostPetsButton.performClick()
     }
 
@@ -62,21 +58,15 @@ class PetsFragment : Fragment() {
         commit()
     }
 
-    private fun filterPublicationListByStatus(status: String) {
-        val filteredPublicationList: List<Publication> = publicationList.filter { publication ->
-            publication.status.equals(status, ignoreCase = true)
-        }
-        petsPublicationAdapter.setPublicationList(filteredPublicationList as ArrayList<Publication>)
-    }
-
-    private fun loadPublicationsFromFirebase(){
+    private fun fetchPublicationsByStatus(status: String){
+        petsPublicationAdapter.clearList(petsPublicationAdapter.itemCount)
         Firebase.firestore.collection("publications").get().addOnCompleteListener{ task->
             for(doc in task.result!!){
                 val publication = doc.toObject(Publication::class.java)
-                publicationList.add(publication)
-                Log.e(">>", publication.name)
+                if(publication.status==status) {
+                    petsPublicationAdapter.addPublication(publication)
+                }
             }
         }
-        petsPublicationAdapter.setPublicationList(publicationList)
     }
 }

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.databinding.FragmentHelpBinding
 import co.edu.icesi.dev.petscued.model.Questions
 import kotlinx.android.synthetic.main.fragment_help.*

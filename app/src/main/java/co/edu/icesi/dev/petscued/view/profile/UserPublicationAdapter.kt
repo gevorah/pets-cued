@@ -5,27 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.model.Publication
-import co.edu.icesi.dev.petscued.view.pets.LostPetFragment
 import com.bumptech.glide.Glide
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import kotlin.collections.ArrayList
 
 class UserPublicationAdapter : RecyclerView.Adapter<UserPublicationView>(),
     UserPublicationView.OnPublicationEdit,
     UserPublicationView.OnPublicationDelete {
 
     private var publicationList = ArrayList<Publication>()
-
-    fun addPublication(publication: Publication){
-        publicationList.add(0, publication)
-        notifyItemInserted(0)
-    }
-
-    fun setPublicationList(publicationList: ArrayList<Publication>){
-        this.publicationList = publicationList
-        notifyDataSetChanged()
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserPublicationView {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -50,6 +38,16 @@ class UserPublicationAdapter : RecyclerView.Adapter<UserPublicationView>(),
 
     override fun getItemCount(): Int {
         return publicationList.size
+    }
+
+    fun addPublication(publication: Publication) {
+        publicationList.add(publication)
+        notifyItemInserted(publicationList.size-1)
+    }
+
+    fun clearList(oldSize : Int) {
+        publicationList.clear()
+        notifyItemRangeRemoved(0, oldSize)
     }
 
     override fun onEdit(publication: Publication) {

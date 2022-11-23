@@ -13,11 +13,6 @@ class PetsPublicationAdapter : RecyclerView.Adapter<PetsPublicationView>(){
 
     private var publicationList = ArrayList<Publication>()
 
-    fun setPublicationList(publicationList: ArrayList<Publication>){
-        this.publicationList = publicationList
-        notifyDataSetChanged()
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetsPublicationView {
         val layoutInflater = LayoutInflater.from(parent.context)
         val publication = layoutInflater.inflate(R.layout.publication, parent, false)
@@ -38,5 +33,15 @@ class PetsPublicationAdapter : RecyclerView.Adapter<PetsPublicationView>(){
 
     override fun getItemCount(): Int {
         return publicationList.size
+    }
+
+    fun addPublication(publication: Publication) {
+        publicationList.add(publication)
+        notifyItemInserted(publicationList.size-1)
+    }
+
+    fun clearList(oldSize : Int) {
+        publicationList.clear()
+        notifyItemRangeRemoved(0, oldSize)
     }
 }

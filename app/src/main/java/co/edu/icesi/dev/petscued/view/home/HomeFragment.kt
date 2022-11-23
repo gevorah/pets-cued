@@ -20,8 +20,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var publicationLayoutManager: GridLayoutManager
-    private lateinit var homePublicationAdapter: HomePublicationAdapter
-    private lateinit var publicationList: ArrayList<Publication>
+    private var homePublicationAdapter: HomePublicationAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -48,7 +47,6 @@ class HomeFragment : Fragment() {
         homePublicationAdapter = HomePublicationAdapter()
         homePublicationRecyclerView.adapter = homePublicationAdapter
 
-        publicationList = ArrayList()
         loadPublicationsFromFirebase()
     }
 
@@ -56,11 +54,10 @@ class HomeFragment : Fragment() {
         Firebase.firestore.collection("publications").get().addOnCompleteListener { task ->
             for (doc in task.result!!) {
                 val publication = doc.toObject(Publication::class.java)
-                publicationList.add(publication)
-                Log.e(">>", publication.name)
+                homePublicationAdapter?.addPublication(publication)
             }
         }
-        homePublicationAdapter.setPublicationList(publicationList)
+        homePublicationAdapter?.reversePublicationList()
     }
 
     private fun setFragment(fragment: Fragment) =

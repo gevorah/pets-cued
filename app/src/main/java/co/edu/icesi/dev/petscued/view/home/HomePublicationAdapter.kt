@@ -14,11 +14,6 @@ class HomePublicationAdapter : RecyclerView.Adapter<HomePublicationView>(){
 
     private var publicationList = ArrayList<Publication>()
 
-    fun setPublicationList(publicationList: ArrayList<Publication>){
-        this.publicationList = publicationList
-        notifyDataSetChanged()
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomePublicationView {
         val layoutInflater = LayoutInflater.from(parent.context)
         val publication = layoutInflater.inflate(R.layout.publication, parent, false)
@@ -39,5 +34,14 @@ class HomePublicationAdapter : RecyclerView.Adapter<HomePublicationView>(){
 
     override fun getItemCount(): Int {
         return publicationList.size
+    }
+
+    fun reversePublicationList(){
+        publicationList.reverse()
+    }
+
+    fun addPublication(publication: Publication) {
+        publicationList.add(publication)
+        notifyItemInserted(publicationList.size-1)
     }
 }

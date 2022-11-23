@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.databinding.FragmentUserPublicationsBinding
 import co.edu.icesi.dev.petscued.model.Publication
-import co.edu.icesi.dev.petscued.model.User
 import co.edu.icesi.dev.petscued.view.pets.LostPetFragment
 import co.edu.icesi.dev.petscued.view.pets.PetAdoptionFragment
 import com.google.firebase.auth.ktx.auth
@@ -34,15 +33,15 @@ class UserPublicationsFragment() : Fragment() {
     ): View {
         binding = FragmentUserPublicationsBinding.inflate(inflater, container, false)
         binding.lostPublicationButton.setOnClickListener {
+            fetchUserPublicationsByStatus(Publication.LOST)
             binding.lostPublicationButton.setBackgroundColor(Color.GREEN)
             binding.adoptionPublicationButton.setBackgroundColor(Color.parseColor("#FFCF9E70"))
-            filterPublicationListByStatus(Publication.LOST)
             isLostButtonGreen = true
         }
         binding.adoptionPublicationButton.setOnClickListener {
+            fetchUserPublicationsByStatus(Publication.ADOPTION)
             binding.adoptionPublicationButton.setBackgroundColor(Color.GREEN)
             binding.lostPublicationButton.setBackgroundColor(Color.parseColor("#FFCF9E70"))
-            filterPublicationListByStatus(Publication.ADOPTION)
             isLostButtonGreen = false
         }
         binding.addFloatingActionButton.setOnClickListener {
@@ -66,81 +65,27 @@ class UserPublicationsFragment() : Fragment() {
         userPublicationAdapter = UserPublicationAdapter()
         userPublicationRecyclerView.adapter = userPublicationAdapter
         userPublicationList = ArrayList()
-        loadUserPublicationsFromFirebase()
+
         binding.lostPublicationButton.performClick()
     }
 
-    private fun filterPublicationListByStatus(status: String) {
-        val filteredPublicationList: List<Publication> = userPublicationList.filter { publication ->
-            publication.status.equals(status, ignoreCase = true)
-        }
-        userPublicationAdapter.setPublicationList(filteredPublicationList as ArrayList<Publication>)
-    }
-
-    private fun loadUserPublicationsFromFirebase() {
+    private fun fetchUserPublicationsByStatus(status: String){
+        userPublicationAdapter.clearList(userPublicationAdapter.itemCount)
         Firebase.firestore.collection("publications")
             .whereEqualTo("userId", Firebase.auth.currentUser!!.uid).get()
             .addOnCompleteListener { task ->
-                for (doc in task.result!!) {
-                    val publication = doc.toObject(Publication::class.java)
-                    userPublicationList.add(publication)
-                    Log.e(">>", publication.name)
+            for(doc in task.result!!){
+                val publication = doc.toObject(Publication::class.java)
+                if(publication.status==status) {
+                    userPublicationAdapter.addPublication(publication)
                 }
             }
-        userPublicationAdapter.setPublicationList(userPublicationList)
+        }
     }
 
     private fun setFragment(fragment: Fragment) = requireActivity().supportFragmentManager.beginTransaction().apply {
         replace(R.id.fl_wrapper, fragment)
         addToBackStack(null)
         commit()
-    }
-
-    private fun addHardcodedElements() {
-        userPublicationList.add(Publication(
-            UUID.randomUUID().toString(),
-            "path",
-            "Laila",
-            "Mestiza",
-            "Male",
-            "José Castro",
-            "dog",
-            "Perdido",
-            "Cali, Santa Mónica",
-            "7 años",
-            "cafe",
-            "sin detalles adiciones.",
-            "3152942393",
-            "Sí"))
-        userPublicationList.add(Publication(
-            UUID.randomUUID().toString(),
-            "path",
-            "Cat",
-            "Mestiza",
-            "Male",
-            "José Castro",
-            "dog",
-            "Adopción",
-            "Cali, Santa Mónica",
-            "7 años",
-            "cafe",
-            "sin detalles adiciones.",
-            "3152942393",
-            "Sí"))
-        userPublicationList.add(Publication(
-            UUID.randomUUID().toString(),
-            "path",
-            "Duck",
-            "Mestiza",
-            "Male",
-            "José Castro",
-            "dog",
-            "Adopción",
-            "Cali, Santa Mónica",
-            "7 años",
-            "cafe",
-            "sin detalles adiciones.",
-            "3152942393",
-            "Sí"))
     }
 }

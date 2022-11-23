@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
@@ -37,7 +38,6 @@ class LostPetFragment : Fragment() {
             intent.type = "image/*"
             galleryLauncher.launch(intent)
         }
-
         binding.lostPetBttn.setOnClickListener {
             publish()
             val userPublicationsFragment = UserPublicationsFragment()
@@ -70,7 +70,32 @@ class LostPetFragment : Fragment() {
         }
     }
 
-    private fun publish() {
+    private fun publish(): Boolean {
+        if(uri==null){
+            Toast.makeText(this.context, "Debe subir una imagen de la mascota", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        else if(!checkIfNotBlankOrEmpty(binding.editTextPetName.text.toString()))
+            return false
+        else if(!checkIfNotBlankOrEmpty(binding.editTextPetBreed.text.toString()))
+            return false
+        else if(!checkRadioButton(binding.radioGroupSex.checkedRadioButtonId))
+            return false
+        else if(!checkIfNotBlankOrEmpty(binding.editTextPetOwner.text.toString()))
+            return false
+        else if(!checkRadioButton(binding.radioGroupType.checkedRadioButtonId))
+            return false
+        else if(!checkIfNotBlankOrEmpty(binding.editTextAddress.text.toString()))
+            return false
+        else if(!checkIfNotBlankOrEmpty(binding.editTextPetAge.text.toString()))
+            return false
+        else if(!checkIfNotBlankOrEmpty(binding.editTextPetColor.text.toString()))
+            return false
+        else if(!checkIfNotBlankOrEmpty(binding.editTextMultiLineDescription.text.toString()))
+            return false
+        else if(!checkIfNotBlankOrEmpty(binding.editTextPhoneNumber.text.toString()))
+            return false
+
         val image = UUID.randomUUID().toString()  // OK
         val name = binding.editTextPetName.text.toString()
         val breed = binding.editTextPetBreed.text.toString()
@@ -83,7 +108,6 @@ class LostPetFragment : Fragment() {
         val color = binding.editTextPetColor.text.toString()
         val description = binding.editTextMultiLineDescription.text.toString() // OK
         val contactInformation = binding.editTextPhoneNumber.text.toString()
-
         val publication = Publication(
             UUID.randomUUID().toString(),
             image,
@@ -101,12 +125,28 @@ class LostPetFragment : Fragment() {
             null,
             Firebase.auth.currentUser!!.uid
         )
-
         Firebase.storage.reference.child("publications").child(image).putFile(uri!!)
         Firebase.firestore.collection("publications").document(publication.id).set(publication)
+        return true
     }
 
-    fun typeRadioGroup(checkedId: Int): String {
+    private fun checkIfNotBlankOrEmpty(field: String): Boolean {
+        if(field.isNotBlank() && field.isNotEmpty()){
+            return true
+        }
+        Toast.makeText(this.context, "Complete todos los campos", Toast.LENGTH_SHORT).show()
+        return false
+    }
+
+    private fun checkRadioButton(id: Int): Boolean {
+        if(id!=-1){
+            return true
+        }
+        Toast.makeText(this.context, "Escoja una opción", Toast.LENGTH_SHORT).show()
+        return false
+    }
+
+    private fun typeRadioGroup(checkedId: Int): String {
         when(checkedId) {
             binding.radioButton.id -> {
                 return binding.radioButton.text.toString()
@@ -127,7 +167,7 @@ class LostPetFragment : Fragment() {
         return ""
     }
 
-    fun sexRadioGroup(checkedId: Int): String {
+    private fun sexRadioGroup(checkedId: Int): String {
         when(checkedId) {
             binding.radioButton10.id -> {
                 return binding.radioButton10.text.toString()

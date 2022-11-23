@@ -43,9 +43,10 @@ class PetAdoptionFragment : Fragment() {
             galleryLauncher.launch(intent)
         }
         binding.adoptionPetBttn.setOnClickListener {
-            publish()
-            val userPublicationsFragment = UserPublicationsFragment()
-            setFragment(userPublicationsFragment)
+            if(publish()){
+                val userPublicationsFragment = UserPublicationsFragment()
+                setFragment(userPublicationsFragment)
+            }
         }
         binding.backPetAdoptionButton.setOnClickListener{
             activity?.supportFragmentManager?.popBackStack()
@@ -72,35 +73,35 @@ class PetAdoptionFragment : Fragment() {
         }
     }
 
-    private fun publish() {
-//        if(!checkIfNotNullOrBlankOrEmpty(uri!!.toString(), "imagen"))
-//            return
-//        else if(!checkIfNotNullOrBlankOrEmpty(binding.editTextPetName.text.toString(), "Nombre"))
-//            return
-//        else if(!checkIfNotNullOrBlankOrEmpty(binding.editTextPetBreed.text.toString(), "Raza"))
-//            return
-//        else if(!checkIfNotNullOrBlankOrEmpty(sex, "Sexo"))
-//            return
-//        else if(!checkIfNotNullOrBlankOrEmpty(owner, "Fundación"))
-//            return
-//        else if(!checkIfNotNullOrBlankOrEmpty(type, "Tipo"))
-//            return
-//        else if(!checkIfNotNullOrBlankOrEmpty(location, "Dirección"))
-//            return
-//        else if(!checkIfNotNullOrBlankOrEmpty(age, "Edad"))
-//            return
-//        else if(!checkIfNotNullOrBlankOrEmpty(color, "Color"))
-//            return
-//        else if(!checkIfNotNullOrBlankOrEmpty(description, "Descripción"))
-//            return
-//        else if(!checkIfNotNullOrBlankOrEmpty(contactInformation, "Teléfono"))
-//            return
-//        else if(!checkIfNotNullOrBlankOrEmpty(vaccinated, "Vacunado"))
-//            return
+    private fun publish(): Boolean {
+        if(uri==null){
+            Toast.makeText(this.context, "Debe subir una imagen de la mascota", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        else if(!checkIfNotBlankOrEmpty(binding.editTextPetName.text.toString()))
+            return false
+        else if(!checkIfNotBlankOrEmpty(binding.editTextPetBreed.text.toString()))
+            return false
+        else if(!checkRadioButton(binding.radioGroupSex.checkedRadioButtonId))
+            return false
+        else if(!checkIfNotBlankOrEmpty(binding.editTextPetOwner.text.toString()))
+            return false
+        else if(!checkRadioButton(binding.radioGroupType.checkedRadioButtonId))
+            return false
+        else if(!checkIfNotBlankOrEmpty(binding.editTextAddress.text.toString()))
+            return false
+        else if(!checkIfNotBlankOrEmpty(binding.editTextPetAge.text.toString()))
+            return false
+        else if(!checkIfNotBlankOrEmpty(binding.editTextPetColor.text.toString()))
+            return false
+        else if(!checkIfNotBlankOrEmpty(binding.editTextPhoneNumber.text.toString()))
+            return false
+        else if(!checkRadioButton(binding.radioGroupVaccinated.checkedRadioButtonId))
+            return false
         val image = UUID.randomUUID().toString() // OK
         val name = binding.editTextPetName.text.toString()
         val breed = binding.editTextPetBreed.text.toString()
-        val sex = "" //sexRadioGroup(binding.radioGroup.checkedRadioButtonId)
+        val sex = sexRadioGroup(binding.radioGroupSex.checkedRadioButtonId) // OK
         val owner = binding.editTextPetOwner.text.toString()
         val type = typeRadioGroup(binding.radioGroupType.checkedRadioButtonId) // OK
         val status = Publication.ADOPTION // OK
@@ -130,13 +131,22 @@ class PetAdoptionFragment : Fragment() {
         )
         Firebase.storage.reference.child("publications").child(image).putFile(uri!!)
         Firebase.firestore.collection("publications").document(publication.id).set(publication)
+        return true
     }
 
-    private fun checkIfNotNullOrBlankOrEmpty(field: String, fieldType: String): Boolean {
-        if(!field!!.toString().isNullOrBlank() && !field!!.toString().isNullOrEmpty()){
+    private fun checkIfNotBlankOrEmpty(field: String): Boolean {
+        if(field.isNotBlank() && field.isNotEmpty()){
             return true
         }
-        Toast.makeText(this.context, "Complete el campo: $fieldType", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this.context, "Complete todos los campos", Toast.LENGTH_SHORT).show()
+        return false
+    }
+
+    private fun checkRadioButton(id: Int): Boolean {
+        if(id!=-1){
+            return true
+        }
+        Toast.makeText(this.context, "Escoja una opción", Toast.LENGTH_SHORT).show()
         return false
     }
 
@@ -161,18 +171,6 @@ class PetAdoptionFragment : Fragment() {
         return ""
     }
 
-    /*fun sexRadioGroup(checkedId: Int): String {
-        when(checkedId) {
-            binding.radioButton10.id -> {
-                return binding.radioButton10.text.toString()
-            }
-            binding.radioButton11.id -> {
-                return binding.radioButton11.text.toString()
-            }
-        }
-        return ""
-    }*/
-
     private fun vaccineRadioGroup(checkedId: Int): String {
         when(checkedId) {
             binding.radioButton6.id -> {
@@ -180,6 +178,18 @@ class PetAdoptionFragment : Fragment() {
             }
             binding.radioButton7.id -> {
                 return binding.radioButton7.text.toString()
+            }
+        }
+        return ""
+    }
+
+    private fun sexRadioGroup(checkedId: Int): String {
+        when(checkedId) {
+            binding.radioButton8.id -> {
+                return binding.radioButton8.text.toString()
+            }
+            binding.radioButton9.id -> {
+                return binding.radioButton9.text.toString()
             }
         }
         return ""

@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.databinding.FragmentHomeBinding
 import co.edu.icesi.dev.petscued.model.Publication
-import co.edu.icesi.dev.petscued.view.pets.LostPetFragment
-import co.edu.icesi.dev.petscued.view.pets.PetAdoptionFragment
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_home.*

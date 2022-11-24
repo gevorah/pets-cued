@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import co.edu.icesi.dev.petscued.databinding.FragmentEditProfileBinding
-import co.edu.icesi.dev.petscued.utils.ImageUtils
 
 class EditProfileFragment : Fragment() {
 
@@ -35,7 +34,6 @@ class EditProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.profilePic.setImageBitmap(ImageUtils.getRoundBitmap(binding.profilePic.drawable.toBitmap()))
     }
 
     private fun changePassword(view: View) {

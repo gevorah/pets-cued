@@ -21,9 +21,6 @@ class PetInfoFragment(private val publication : Publication) : Fragment() {
                                 ): View {
         binding = FragmentPetInfoBinding.inflate(inflater, container, false)
 
-        binding.buttonShare.setOnClickListener {
-            // do something
-        }
         binding.backPetInfoButton.setOnClickListener{
             activity?.supportFragmentManager?.popBackStack()
         }

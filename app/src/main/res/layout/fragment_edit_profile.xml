@@ -29,17 +29,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/header" />
 
-    <ImageView
-        android:id="@+id/profile_pic"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/profile_card"
         android:layout_width="128dp"
         android:layout_height="128dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/profilephoto_style"
-        android:foreground="@drawable/profilephoto_style"
-        android:src="@drawable/logo"
-        app:layout_constraintEnd_toEndOf="@+id/header"
+        app:cardCornerRadius="150dp"
+        app:cardPreventCornerOverlap="false"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_title" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_title">
+
+        <ImageView
+            android:id="@+id/profile_pic"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:background="@drawable/profilephoto_style"
+            android:foreground="@drawable/profilephoto_style"
+            android:src="@drawable/logo" />
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/name_title"
@@ -50,7 +58,7 @@
         android:text="@string/prompt_name"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_pic" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_card" />
 
     <EditText
         android:id="@+id/edit_name_txt"
@@ -69,7 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:text="@string/prompt_email"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,38 +97,15 @@
         app:layout_constraintTop_toBottomOf="@+id/email_title" />
 
     <TextView
-        android:id="@+id/phone_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="15dp"
-        android:text="@string/prompt_phone"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_email_txt" />
-
-    <EditText
-        android:id="@+id/edit_phone_txt"
-        style="@style/Widget.App.EditText.CutBox"
-        android:layout_marginTop="10dp"
-        android:autofillHints="@string/prompt_phone"
-        android:ems="10"
-        android:hint="@string/prompt_phone"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone_title" />
-
-    <TextView
         android:id="@+id/password_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:text="@string/prompt_password"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_phone_txt" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_email_txt" />
 
     <EditText
         android:id="@+id/edit_password1_txt"

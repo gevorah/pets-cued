@@ -1,6 +1,6 @@
-package co.edu.icesi.dev.petscued.view.pets
+package co.edu.icesi.dev.petscued.view.home
 
-import android.app.Activity.RESULT_OK
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -9,11 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import co.edu.icesi.dev.petscued.R
-import co.edu.icesi.dev.petscued.databinding.FragmentPetAdoptionBinding
+import co.edu.icesi.dev.petscued.databinding.FragmentLostPetBinding
 import co.edu.icesi.dev.petscued.model.Publication
 import co.edu.icesi.dev.petscued.view.profile.UserPublicationsFragment
 import com.google.firebase.auth.ktx.auth
@@ -22,35 +21,32 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.util.*
 
+class LostPetFragment : Fragment() {
 
-class PetAdoptionFragment : Fragment() {
-
-    private lateinit var binding: FragmentPetAdoptionBinding
-    private lateinit var galleryLauncher: ActivityResultLauncher<Intent>
+    private lateinit var binding: FragmentLostPetBinding
     private var uri: Uri? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = FragmentPetAdoptionBinding.inflate(inflater, container, false)
+        binding = FragmentLostPetBinding.inflate(inflater, container, false)
 
-        galleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult(), ::onGalleryResult)
+        val galleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult(), ::onGalleryResult)
 
         binding.imageButtonPet.setOnClickListener {
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "image/*"
             galleryLauncher.launch(intent)
         }
-        binding.adoptionPetBttn.setOnClickListener {
-            if(publish()){
-                val userPublicationsFragment = UserPublicationsFragment()
-                setFragment(userPublicationsFragment)
-            }
+        binding.lostPetBttn.setOnClickListener {
+            publish()
+            val userPublicationsFragment = UserPublicationsFragment()
+            setFragment(userPublicationsFragment)
         }
-        binding.backPetAdoptionButton.setOnClickListener{
+        binding.backLostPetButton.setOnClickListener{
             activity?.supportFragmentManager?.popBackStack()
         }
+
         return binding.root
     }
 
@@ -58,14 +54,15 @@ class PetAdoptionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun setFragment(fragment: Fragment) = requireActivity().supportFragmentManager.beginTransaction().apply {
-        replace(R.id.fl_wrapper, fragment)
-        addToBackStack(null)
-        commit()
-    }
+    private fun setFragment(fragment: Fragment) =
+        requireActivity().supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fl_wrapper, fragment)
+            addToBackStack(null)
+            commit()
+        }
 
     private fun onGalleryResult(result: ActivityResult) {
-        if(result.resultCode == RESULT_OK) {
+        if(result.resultCode == Activity.RESULT_OK) {
             uri = result.data?.data
             uri?.let {
                 binding.imageButtonPet.setImageURI(uri)
@@ -94,24 +91,23 @@ class PetAdoptionFragment : Fragment() {
             return false
         else if(!checkIfNotBlankOrEmpty(binding.editTextPetColor.text.toString()))
             return false
+        else if(!checkIfNotBlankOrEmpty(binding.editTextMultiLineDescription.text.toString()))
+            return false
         else if(!checkIfNotBlankOrEmpty(binding.editTextPhoneNumber.text.toString()))
             return false
-        else if(!checkRadioButton(binding.radioGroupVaccinated.checkedRadioButtonId))
-            return false
-        val image = UUID.randomUUID().toString() // OK
+
+        val image = UUID.randomUUID().toString()  // OK
         val name = binding.editTextPetName.text.toString()
         val breed = binding.editTextPetBreed.text.toString()
         val sex = sexRadioGroup(binding.radioGroupSex.checkedRadioButtonId) // OK
         val owner = binding.editTextPetOwner.text.toString()
         val type = typeRadioGroup(binding.radioGroupType.checkedRadioButtonId) // OK
-        val status = Publication.ADOPTION // OK
+        val status = Publication.LOST // OK
         val location = binding.editTextAddress.text.toString()
         val age = binding.editTextPetAge.text.toString()
         val color = binding.editTextPetColor.text.toString()
-        val description = "" //?
+        val description = binding.editTextMultiLineDescription.text.toString() // OK
         val contactInformation = binding.editTextPhoneNumber.text.toString()
-        val vaccinated = vaccineRadioGroup(binding.radioGroupVaccinated.checkedRadioButtonId) // OK
-
         val publication = Publication(
             UUID.randomUUID().toString(),
             image,
@@ -126,7 +122,7 @@ class PetAdoptionFragment : Fragment() {
             color,
             description,
             contactInformation,
-            vaccinated,
+            null,
             Firebase.auth.currentUser!!.uid
         )
         Firebase.storage.reference.child("publications").child(image).putFile(uri!!)
@@ -171,25 +167,13 @@ class PetAdoptionFragment : Fragment() {
         return ""
     }
 
-    private fun vaccineRadioGroup(checkedId: Int): String {
-        when(checkedId) {
-            binding.radioButton6.id -> {
-                return binding.radioButton6.text.toString()
-            }
-            binding.radioButton7.id -> {
-                return binding.radioButton7.text.toString()
-            }
-        }
-        return ""
-    }
-
     private fun sexRadioGroup(checkedId: Int): String {
         when(checkedId) {
-            binding.radioButton8.id -> {
-                return binding.radioButton8.text.toString()
+            binding.radioButton10.id -> {
+                return binding.radioButton10.text.toString()
             }
-            binding.radioButton9.id -> {
-                return binding.radioButton9.text.toString()
+            binding.radioButton11.id -> {
+                return binding.radioButton11.text.toString()
             }
         }
         return ""

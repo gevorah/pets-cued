@@ -10,27 +10,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="70dp"
-        app:cardCornerRadius="150dp"
-        app:cardPreventCornerOverlap="false"
-        app:layout_constraintBottom_toTopOf="@+id/email_fld"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/include">
-
-        <ImageView
-            android:id="@+id/profile_pic2"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:background="@drawable/profilephoto_style"
-            android:foreground="@drawable/profilephoto_style"
-            android:src="@drawable/logo" />
-    </androidx.cardview.widget.CardView>
-
     <include
         layout="@layout/top_nav"
         android:id="@+id/include"
@@ -38,10 +17,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/profile_card"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="32dp"
+        app:cardCornerRadius="150dp"
+        app:cardPreventCornerOverlap="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:background="@drawable/profilephoto_style"
+            android:foreground="@drawable/profilephoto_style"
+            android:src="@drawable/logo" />
+
+    </androidx.cardview.widget.CardView>
+
     <EditText
         android:id="@+id/email_fld"
         style="@style/Widget.App.EditText.RoundBox"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="32dp"
         android:autofillHints="@string/prompt_email"
         android:drawableStart="@drawable/ic_outline_account_24"
         android:hint="@string/prompt_email"
@@ -49,7 +49,7 @@
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_card" />
 
     <EditText
         style="@style/Widget.App.EditText.RoundBox"

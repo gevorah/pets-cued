@@ -11,23 +11,20 @@ import androidx.fragment.app.Fragment
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.databinding.FragmentProfileBinding
 import co.edu.icesi.dev.petscued.model.User
-import co.edu.icesi.dev.petscued.utils.ImageUtils
 import co.edu.icesi.dev.petscued.view.login.LoginActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.ktx.messaging
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.fragment_profile.*
 
-@Suppress("UNUSED_EXPRESSION")
 class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     private lateinit var user: User
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View?{
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
 
         binding = FragmentProfileBinding.inflate(inflater, container, false)
 
@@ -43,7 +40,7 @@ class ProfileFragment : Fragment() {
             val helpFragment = HelpFragment()
             setFragment(helpFragment)
         }
-        binding.logOutBtn.setOnClickListener{
+        binding.logOutBtn.setOnClickListener {
             logout()
             val intent = Intent(activity, LoginActivity::class.java)
             startActivity(intent)
@@ -54,40 +51,38 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.profilePic.setImageBitmap(ImageUtils.getRoundBitmap(binding.profilePic.drawable.toBitmap()))
-
         val user = loadUser()
-        if(user == null || Firebase.auth.currentUser == null || Firebase.auth.currentUser?.isEmailVerified == false){
+        if (user == null || Firebase.auth.currentUser == null || Firebase.auth.currentUser?.isEmailVerified == false) {
             val intent = Intent(context, LoginActivity::class.java)
             startActivity(intent)
             activity?.finish()
             return
-        }else{
+        } else {
             this.user = user
         }
         Firebase.messaging.subscribeToTopic(user.id)
         binding.usernameTxt.text = user.name
         binding.emailTxt.text = user.email
-        binding.phoneTxt.text = "3214567890"
     }
 
-    private fun setFragment(fragment: Fragment) = requireActivity().supportFragmentManager.beginTransaction().apply {
-        replace(R.id.fl_wrapper, fragment)
-        addToBackStack(null)
-        commit()
-    }
+    private fun setFragment(fragment: Fragment) =
+        requireActivity().supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fl_wrapper, fragment)
+            addToBackStack(null)
+            commit()
+        }
 
     private fun loadUser(): User? {
         val sp = requireActivity().getSharedPreferences("pets-cued", AppCompatActivity.MODE_PRIVATE)
         val json = sp.getString("user", "NO_USER")
-        return if(json == "NO_USER"){
+        return if (json == "NO_USER") {
             null
-        }else{
+        } else {
             Gson().fromJson(json, User::class.java)
         }
     }
 
-    private fun logout(){
+    private fun logout() {
         activity?.finish()
         val user = loadUser()
         val intent = Intent(context, LoginActivity::class.java)

@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.databinding.FragmentUserPublicationsBinding
 import co.edu.icesi.dev.petscued.model.Publication
-import co.edu.icesi.dev.petscued.view.pets.LostPetFragment
-import co.edu.icesi.dev.petscued.view.pets.PetAdoptionFragment
+import co.edu.icesi.dev.petscued.view.home.LostPetFragment
+import co.edu.icesi.dev.petscued.view.home.PetAdoptionFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase

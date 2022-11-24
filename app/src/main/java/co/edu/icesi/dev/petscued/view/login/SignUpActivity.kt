@@ -18,13 +18,14 @@ class SignUpActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivitySignUpBinding.inflate(layoutInflater)
+        binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         back_title.setText(R.string.action_sign_up)
         back_btn.setOnClickListener {
             finish()
         }
+
         binding.singUpBtn.setOnClickListener(::register)
     }
 

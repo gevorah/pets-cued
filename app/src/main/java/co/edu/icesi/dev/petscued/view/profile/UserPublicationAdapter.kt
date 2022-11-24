@@ -5,11 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.model.Publication
+import co.edu.icesi.dev.petscued.view.pets.PetInfoFragment
 import com.bumptech.glide.Glide
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 
-class UserPublicationAdapter : RecyclerView.Adapter<UserPublicationView>(),
+class UserPublicationAdapter(private val userPublicationsFragment: UserPublicationsFragment) : RecyclerView.Adapter<UserPublicationView>(),
     UserPublicationView.OnPublicationEdit,
     UserPublicationView.OnPublicationDelete {
 
@@ -34,6 +35,10 @@ class UserPublicationAdapter : RecyclerView.Adapter<UserPublicationView>(),
         holder.breedTextView.text = publication.breed
         holder.ownerTextView.text = publication.owner
         holder.locationTextView.text = publication.location
+        holder.itemView.setOnClickListener{
+            val petInfoFragment = PetInfoFragment(publication)
+            userPublicationsFragment.setFragment(petInfoFragment)
+        }
     }
 
     override fun getItemCount(): Int {

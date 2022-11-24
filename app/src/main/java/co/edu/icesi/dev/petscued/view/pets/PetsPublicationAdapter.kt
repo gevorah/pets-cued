@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 
-class PetsPublicationAdapter : RecyclerView.Adapter<PetsPublicationView>(){
+class PetsPublicationAdapter(private val petsFragment: PetsFragment) : RecyclerView.Adapter<PetsPublicationView>(){
 
     private var publicationList = ArrayList<Publication>()
 
@@ -29,6 +29,10 @@ class PetsPublicationAdapter : RecyclerView.Adapter<PetsPublicationView>(){
         holder.breedTextView.text = publication.breed
         holder.ownerTextView.text = publication.owner
         holder.locationTextView.text = publication.location
+        holder.itemView.setOnClickListener{
+            val petInfoFragment = PetInfoFragment(publication)
+            petsFragment.setFragment(petInfoFragment)
+        }
     }
 
     override fun getItemCount(): Int {

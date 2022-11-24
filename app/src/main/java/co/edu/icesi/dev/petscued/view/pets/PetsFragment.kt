@@ -42,17 +42,15 @@ class PetsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         this.publicationLayoutManager = GridLayoutManager(context, 2)
         petsPublicationRecyclerView.layoutManager = publicationLayoutManager
         petsPublicationRecyclerView.setHasFixedSize(true)
-        petsPublicationAdapter = PetsPublicationAdapter()
+        petsPublicationAdapter = PetsPublicationAdapter(this)
         petsPublicationRecyclerView.adapter = this.petsPublicationAdapter
-
         binding.lostPetsButton.performClick()
     }
 
-    private fun setFragment(fragment: Fragment) = requireActivity().supportFragmentManager.beginTransaction().apply {
+    fun setFragment(fragment: Fragment) = requireActivity().supportFragmentManager.beginTransaction().apply {
         replace(R.id.fl_wrapper, fragment)
         addToBackStack(null)
         commit()

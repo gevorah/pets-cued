@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.model.Publication
+import co.edu.icesi.dev.petscued.view.pets.PetInfoFragment
 import com.bumptech.glide.Glide
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import kotlin.collections.ArrayList
 
-class HomePublicationAdapter : RecyclerView.Adapter<HomePublicationView>(){
+class HomePublicationAdapter(private val homeFragment: HomeFragment) : RecyclerView.Adapter<HomePublicationView>(){
 
     private var publicationList = ArrayList<Publication>()
 
@@ -22,7 +22,7 @@ class HomePublicationAdapter : RecyclerView.Adapter<HomePublicationView>(){
 
     override fun onBindViewHolder(holder: HomePublicationView, position: Int) {
         val publication: Publication = publicationList[position]
-        holder.publication = publication
+        publication.also { holder.publication = it }
         Firebase.storage.reference.child("publications").child(publication.image).downloadUrl.addOnSuccessListener {
             Glide.with(holder.petImageView).load(it).into(holder.petImageView)
         }
@@ -30,14 +30,14 @@ class HomePublicationAdapter : RecyclerView.Adapter<HomePublicationView>(){
         holder.breedTextView.text = publication.breed
         holder.ownerTextView.text = publication.owner
         holder.locationTextView.text = publication.location
+        holder.itemView.setOnClickListener{
+            val petInfoFragment = PetInfoFragment(publication)
+            homeFragment.setFragment(petInfoFragment)
+        }
     }
 
     override fun getItemCount(): Int {
         return publicationList.size
-    }
-
-    fun reversePublicationList(){
-        publicationList.reverse()
     }
 
     fun addPublication(publication: Publication) {

@@ -1,7 +1,6 @@
 package co.edu.icesi.dev.petscued.view.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,13 +39,11 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         this.publicationLayoutManager = GridLayoutManager(context, 2)
         homePublicationRecyclerView.layoutManager = publicationLayoutManager
         homePublicationRecyclerView.setHasFixedSize(true)
-        homePublicationAdapter = HomePublicationAdapter()
+        homePublicationAdapter = HomePublicationAdapter(this)
         homePublicationRecyclerView.adapter = homePublicationAdapter
-
         loadPublicationsFromFirebase()
     }
 
@@ -57,10 +54,9 @@ class HomeFragment : Fragment() {
                 homePublicationAdapter?.addPublication(publication)
             }
         }
-        homePublicationAdapter?.reversePublicationList()
     }
 
-    private fun setFragment(fragment: Fragment) =
+    fun setFragment(fragment: Fragment) =
         requireActivity().supportFragmentManager.beginTransaction().apply {
             replace(R.id.fl_wrapper, fragment)
             addToBackStack(null)

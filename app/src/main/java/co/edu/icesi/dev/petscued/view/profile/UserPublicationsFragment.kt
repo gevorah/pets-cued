@@ -57,14 +57,12 @@ class UserPublicationsFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         publicationLayoutManager = LinearLayoutManager(context)
         userPublicationRecyclerView.layoutManager = publicationLayoutManager
         userPublicationRecyclerView.setHasFixedSize(true)
-        userPublicationAdapter = UserPublicationAdapter()
+        userPublicationAdapter = UserPublicationAdapter(this)
         userPublicationRecyclerView.adapter = userPublicationAdapter
         userPublicationList = ArrayList()
-
         binding.lostPublicationButton.performClick()
     }
 
@@ -82,7 +80,7 @@ class UserPublicationsFragment() : Fragment() {
         }
     }
 
-    private fun setFragment(fragment: Fragment) = requireActivity().supportFragmentManager.beginTransaction().apply {
+    fun setFragment(fragment: Fragment) = requireActivity().supportFragmentManager.beginTransaction().apply {
         replace(R.id.fl_wrapper, fragment)
         addToBackStack(null)
         commit()

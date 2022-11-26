@@ -7,6 +7,7 @@ import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.model.Publication
 import co.edu.icesi.dev.petscued.view.pets.PetInfoFragment
 import com.bumptech.glide.Glide
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 
@@ -57,17 +58,17 @@ class UserPublicationAdapter(private val userPublicationsFragment: UserPublicati
 
     override fun onEdit(publication: Publication) {
         if(publication.status==Publication.LOST){
-//            val lostPetFragment = LostPetFragment()
-//            lostPetFragment.requireActivity().supportFragmentManager.beginTransaction()
-//                .replace(R.id.fl_wrapper, lostPetFragment)
-//                .addToBackStack(null)
-//                .commit();
+            val publicationEditFormFragment = PublicationEditFormFragment(publication)
+            userPublicationsFragment.setFragment(publicationEditFormFragment)
         }else {
-
+            val publicationEditFormFragment = PublicationEditFormFragment(publication)
+            userPublicationsFragment.setFragment(publicationEditFormFragment)
         }
     }
 
     override fun onDelete(publication: Publication) {
+        Firebase.storage.reference.child("publications").child(publication.image).delete()
+        Firebase.firestore.collection("publications").document(publication.id).delete()
         val index = publicationList.indexOf(publication)
         publicationList.removeAt(index)
         notifyItemRemoved(index)

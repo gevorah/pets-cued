@@ -21,7 +21,7 @@ class HomePublicationAdapter(private val homeFragment: HomeFragment) : RecyclerV
     }
 
     override fun onBindViewHolder(holder: HomePublicationView, position: Int) {
-        val publication: Publication = publicationList[position]
+        val publication = publicationList[position]
         publication.also { holder.publication = it }
         Firebase.storage.reference.child("publications").child(publication.image).downloadUrl.addOnSuccessListener {
             Glide.with(holder.petImageView).load(it).into(holder.petImageView)

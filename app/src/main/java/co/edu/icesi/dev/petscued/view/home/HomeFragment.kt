@@ -25,12 +25,12 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         binding.lostImageButton.setOnClickListener {
-            val lostPetFragment = LostPetFragment()
-            setFragment(lostPetFragment)
+            val publicationFormFragment = PublicationFormFragment(Publication.LOST)
+            setFragment(publicationFormFragment)
         }
         binding.adoptionImageButton.setOnClickListener {
-            val petAdoptionFragment = PetAdoptionFragment()
-            setFragment(petAdoptionFragment)
+            val publicationFormFragment = PublicationFormFragment(Publication.ADOPTION)
+            setFragment(publicationFormFragment)
         }
         return binding.root
     }

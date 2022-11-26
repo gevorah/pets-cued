@@ -10,16 +10,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import co.edu.icesi.dev.petscued.R
 import co.edu.icesi.dev.petscued.databinding.FragmentUserPublicationsBinding
 import co.edu.icesi.dev.petscued.model.Publication
-import co.edu.icesi.dev.petscued.view.home.LostPetFragment
-import co.edu.icesi.dev.petscued.view.home.PetAdoptionFragment
+import co.edu.icesi.dev.petscued.view.home.PublicationFormFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_user_publications.*
 import java.util.*
 
-
-class UserPublicationsFragment() : Fragment() {
+class UserPublicationsFragment : Fragment() {
 
     private lateinit var binding: FragmentUserPublicationsBinding
     private lateinit var publicationLayoutManager: LinearLayoutManager
@@ -45,11 +43,11 @@ class UserPublicationsFragment() : Fragment() {
         }
         binding.addFloatingActionButton.setOnClickListener {
             if(isLostButtonGreen){
-                val lostPetFragment = LostPetFragment()
-                setFragment(lostPetFragment)
+                val publicationFormFragment = PublicationFormFragment(Publication.LOST)
+                setFragment(publicationFormFragment)
             }else {
-                val petAdoptionFragment = PetAdoptionFragment()
-                setFragment(petAdoptionFragment)
+                val publicationFormFragment = PublicationFormFragment(Publication.ADOPTION)
+                setFragment(publicationFormFragment)
             }
         }
         return binding.root

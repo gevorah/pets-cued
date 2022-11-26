@@ -13,7 +13,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import co.edu.icesi.dev.petscued.R
-import co.edu.icesi.dev.petscued.databinding.FragmentPetAdoptionBinding
+import co.edu.icesi.dev.petscued.databinding.FragmentPublicationFormBinding
 import co.edu.icesi.dev.petscued.model.Publication
 import co.edu.icesi.dev.petscued.view.profile.UserPublicationsFragment
 import com.google.firebase.auth.ktx.auth
@@ -22,10 +22,9 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.util.*
 
+class PublicationFormFragment(private val status : String) : Fragment() {
 
-class PetAdoptionFragment : Fragment() {
-
-    private lateinit var binding: FragmentPetAdoptionBinding
+    private lateinit var binding: FragmentPublicationFormBinding
     private lateinit var galleryLauncher: ActivityResultLauncher<Intent>
     private var uri: Uri? = null
 
@@ -33,7 +32,7 @@ class PetAdoptionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentPetAdoptionBinding.inflate(inflater, container, false)
+        binding = FragmentPublicationFormBinding.inflate(inflater, container, false)
 
         galleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult(), ::onGalleryResult)
 
@@ -42,20 +41,16 @@ class PetAdoptionFragment : Fragment() {
             intent.type = "image/*"
             galleryLauncher.launch(intent)
         }
-        binding.adoptionPetBttn.setOnClickListener {
+        binding.lostPetBttn.setOnClickListener {
             if(publish()){
                 val userPublicationsFragment = UserPublicationsFragment()
                 setFragment(userPublicationsFragment)
             }
         }
-        binding.backPetAdoptionButton.setOnClickListener{
+        binding.backLostPetButton.setOnClickListener{
             activity?.supportFragmentManager?.popBackStack()
         }
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
     }
 
     private fun setFragment(fragment: Fragment) = requireActivity().supportFragmentManager.beginTransaction().apply {
@@ -96,21 +91,18 @@ class PetAdoptionFragment : Fragment() {
             return false
         else if(!checkIfNotBlankOrEmpty(binding.editTextPhoneNumber.text.toString()))
             return false
-        else if(!checkRadioButton(binding.radioGroupVaccinated.checkedRadioButtonId))
-            return false
         val image = UUID.randomUUID().toString() // OK
         val name = binding.editTextPetName.text.toString()
         val breed = binding.editTextPetBreed.text.toString()
         val sex = sexRadioGroup(binding.radioGroupSex.checkedRadioButtonId) // OK
         val owner = binding.editTextPetOwner.text.toString()
         val type = typeRadioGroup(binding.radioGroupType.checkedRadioButtonId) // OK
-        val status = Publication.ADOPTION // OK
+        val status = status // OK
         val location = binding.editTextAddress.text.toString()
         val age = binding.editTextPetAge.text.toString()
         val color = binding.editTextPetColor.text.toString()
-        val description = "" //?
+        val description = binding.editTextMultiLineDescription.text.toString()
         val contactInformation = binding.editTextPhoneNumber.text.toString()
-        val vaccinated = vaccineRadioGroup(binding.radioGroupVaccinated.checkedRadioButtonId) // OK
 
         val publication = Publication(
             UUID.randomUUID().toString(),
@@ -126,7 +118,6 @@ class PetAdoptionFragment : Fragment() {
             color,
             description,
             contactInformation,
-            vaccinated,
             Firebase.auth.currentUser!!.uid
         )
         Firebase.storage.reference.child("publications").child(image).putFile(uri!!)
@@ -171,25 +162,13 @@ class PetAdoptionFragment : Fragment() {
         return ""
     }
 
-    private fun vaccineRadioGroup(checkedId: Int): String {
-        when(checkedId) {
-            binding.radioButton6.id -> {
-                return binding.radioButton6.text.toString()
-            }
-            binding.radioButton7.id -> {
-                return binding.radioButton7.text.toString()
-            }
-        }
-        return ""
-    }
-
     private fun sexRadioGroup(checkedId: Int): String {
         when(checkedId) {
-            binding.radioButton8.id -> {
-                return binding.radioButton8.text.toString()
+            binding.radioButton10.id -> {
+                return binding.radioButton10.text.toString()
             }
-            binding.radioButton9.id -> {
-                return binding.radioButton9.text.toString()
+            binding.radioButton11.id -> {
+                return binding.radioButton11.text.toString()
             }
         }
         return ""

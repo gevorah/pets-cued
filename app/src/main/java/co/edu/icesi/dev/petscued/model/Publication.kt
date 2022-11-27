@@ -22,7 +22,5 @@ class Publication(
         const val FEMALE = "Hembra"
         const val ADOPTION = "Adopción"
         const val LOST = "Perdido"
-        const val VACCINATED = "SÍ"
-        const val NON_VACCINATED = "NO"
     }
 }

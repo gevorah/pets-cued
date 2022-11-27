@@ -38,6 +38,6 @@ class PetInfoFragment(private val publication : Publication) : Fragment() {
         binding.textViewAge.text = publication.age
         binding.textViewBreed.text = publication.breed
         binding.editTextMultiLineDetails.setText(publication.description)
-        binding.textViewContactInfo.text = publication.location
+        binding.textViewContactInfo.text = publication.contactInformation
     }
 }

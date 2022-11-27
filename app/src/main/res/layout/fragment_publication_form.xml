@@ -214,7 +214,7 @@
             android:background="@drawable/border_fill_green"
             android:ems="10"
             android:fontFamily="@font/roboto_regular"
-            android:hint="Teléfono, correo"
+            android:hint="Teléfono, email"
             android:inputType="textPersonName"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -349,6 +349,7 @@
             android:gravity="start|top"
             android:hint="Descripción de la mascota"
             android:inputType="textMultiLine"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
 

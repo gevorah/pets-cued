@@ -23,29 +23,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
-        android:id="@+id/vaccinatedSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="24dp"
-        android:contentDescription="@string/vaccinated_spinner"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/genderSpinner" />
-
-    <TextView
-        android:id="@+id/vaccinatedTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="36dp"
-        android:fontFamily="@font/roboto_black"
-        android:text="Vacunas"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sexTextView" />
-
     <EditText
         android:id="@+id/editTextLocation"
         android:layout_width="0dp"
@@ -55,7 +32,7 @@
         android:layout_marginEnd="20dp"
         android:ems="10"
         android:fontFamily="@font/roboto_medium"
-        android:hint="Ciudad, Barrio"
+        android:hint="Ciudad, dirección, barrio"
         android:inputType="textShortMessage|textFilter|textPersonName"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextBreed" />
 
     <Button
-        android:id="@+id/applyButton"
+        android:id="@+id/applyFilterButton"
         android:layout_width="115dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="132dp"
@@ -81,7 +58,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
         android:ems="10"
         android:fontFamily="@font/roboto_medium"
@@ -112,20 +89,42 @@
 
     <TextView
         android:id="@+id/sexTextView"
-        android:layout_width="34dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
+        android:layout_width="65dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/roboto_black"
-        android:text="Sex"
+        android:text="Sexo"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/genderSpinner"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextAge" />
 
+    <RadioGroup
+        android:id="@+id/radioGroupSex"
+        android:layout_width="89dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAge">
+
+        <RadioButton
+            android:id="@+id/radioButton10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Macho" />
+
+        <RadioButton
+            android:id="@+id/radioButton11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Hembra" />
+    </RadioGroup>
+
     <Button
-        android:id="@+id/cleanButton"
+        android:id="@+id/clearFilterButton"
         android:layout_width="115dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
@@ -142,7 +141,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
         android:ems="10"
         android:fontFamily="@font/roboto_medium"
@@ -153,17 +152,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextLocation" />
-
-    <Spinner
-        android:id="@+id/genderSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:contentDescription="@string/gender_spinner"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAge" />
 
     <ImageButton
         android:id="@+id/backButton"

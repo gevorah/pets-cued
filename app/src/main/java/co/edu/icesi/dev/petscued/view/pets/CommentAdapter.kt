@@ -1,5 +1,6 @@
 package co.edu.icesi.dev.petscued.view.pets
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +11,7 @@ import co.edu.icesi.dev.petscued.model.User
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlin.math.log
 
 class CommentAdapter (private val petInfoFragment: PetInfoFragment) : RecyclerView.Adapter<CommentView>() {
 
@@ -26,11 +28,11 @@ class CommentAdapter (private val petInfoFragment: PetInfoFragment) : RecyclerVi
         comment.also { holder.comment = it }
 
         Firebase.firestore.collection("users")
-            .whereEqualTo("userId", comment.userId).get()
+            .whereEqualTo("id", comment.userId).get()
             .addOnCompleteListener { task ->
                 for(doc in task.result!!){
                     val user = doc.toObject(User::class.java)
-                    holder.nameUserTextView.text= user.name
+                    holder.nameUserTextView.text = user.name
                 }
             }
 

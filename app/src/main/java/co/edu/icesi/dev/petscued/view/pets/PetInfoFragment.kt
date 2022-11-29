@@ -75,7 +75,7 @@ class PetInfoFragment(private val publication : Publication) : Fragment() {
     }
 
     private fun loadCommentsFromFirebase() {
-        Firebase.firestore.collection("comments").get().addOnCompleteListener { task ->
+        Firebase.firestore.collection("comments").whereEqualTo("publicationId", publication.id).get().addOnCompleteListener { task ->
             for (doc in task.result!!) {
                 val comment = doc.toObject(Comment::class.java)
                 commentAdapter?.addComment(comment)
@@ -96,6 +96,9 @@ class PetInfoFragment(private val publication : Publication) : Fragment() {
             publication.id
         )
         Firebase.firestore.collection("comments").document(comment.id).set(comment)
+
+        loadCommentsFromFirebase()
+
         return true
     }
 

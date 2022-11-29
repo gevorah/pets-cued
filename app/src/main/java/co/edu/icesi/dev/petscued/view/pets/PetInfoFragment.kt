@@ -4,22 +4,33 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import co.edu.icesi.dev.petscued.databinding.FragmentPetInfoBinding
 import co.edu.icesi.dev.petscued.model.Comment
 import co.edu.icesi.dev.petscued.model.Publication
+import co.edu.icesi.dev.petscued.view.home.HomePublicationAdapter
 import co.edu.icesi.dev.petscued.view.profile.UserPublicationsFragment
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_pet_info.*
+import kotlinx.android.synthetic.main.fragment_pets.*
 import java.util.*
 
 class PetInfoFragment(private val publication : Publication) : Fragment() {
 
     private lateinit var binding: FragmentPetInfoBinding
+    private lateinit var commentLayoutManager: LinearLayoutManager
+    private lateinit var commentAdapter: CommentAdapter
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
                                 ): View {
@@ -28,10 +39,9 @@ class PetInfoFragment(private val publication : Publication) : Fragment() {
         binding.backPetInfoButton.setOnClickListener{
             activity?.supportFragmentManager?.popBackStack()
         }
-s
         binding.commentBttn.setOnClickListener{
             if(publish()){
-                Toast.makeText(this.context, "Su comentario se publicó con exito", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this.context, "Su comentario se publico con exito", Toast.LENGTH_SHORT).show()
                 binding.CommentEditTextMultiLine.setText("")
             }
         }
@@ -40,6 +50,7 @@ s
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+       //datos de publicacion
         super.onViewCreated(view, savedInstanceState)
         Firebase.storage.reference.child("publications").child(publication.image).downloadUrl.addOnSuccessListener {
             Glide.with(binding.imageViewPet).load(it).into(binding.imageViewPet)
@@ -52,8 +63,25 @@ s
         binding.textViewBreed.text = publication.breed
         binding.editTextMultiLineDetails.setText(publication.description)
         binding.textViewContactInfo.text = publication.contactInformation
+
+        //comentarios
+
+        this.commentLayoutManager = LinearLayoutManager(context)
+        commentRecyclerView.layoutManager = commentLayoutManager
+        commentRecyclerView.setHasFixedSize(true)
+        commentAdapter = CommentAdapter(this)
+        commentRecyclerView.adapter = commentAdapter
+        loadCommentsFromFirebase()
     }
 
+    private fun loadCommentsFromFirebase() {
+        Firebase.firestore.collection("comments").get().addOnCompleteListener { task ->
+            for (doc in task.result!!) {
+                val comment = doc.toObject(Comment::class.java)
+                commentAdapter?.addComment(comment)
+            }
+        }
+    }
     private fun publish(): Boolean {
 
         if(!checkIfNotBlankOrEmpty(binding.CommentEditTextMultiLine.text.toString()))

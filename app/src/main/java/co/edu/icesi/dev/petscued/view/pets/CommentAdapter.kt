@@ -47,4 +47,9 @@ class CommentAdapter (private val petInfoFragment: PetInfoFragment) : RecyclerVi
         commentList.add(comment)
         notifyItemInserted(commentList.size - 1)
     }
+
+    fun clearList(oldSize : Int) {
+        commentList.clear()
+        notifyItemRangeRemoved(0, oldSize)
+    }
 }

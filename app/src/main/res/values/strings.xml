@@ -6,7 +6,9 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_phone">Teléfono</string>
     <string name="prompt_password">Contraseña</string>
-    <string name="prompt_repeat_password">Repita la contraseña</string>
+    <string name="prompt_new_password">Nueva contraseña</string>
+    <string name="prompt_rep_new_password">Repita la nueva contraseña</string>
+
 
     <!-- strings related to login -->
     <string name="action_google">Continuar con Google</string>
